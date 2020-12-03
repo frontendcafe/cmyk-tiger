@@ -3,12 +3,12 @@ import { InputForm } from './componentes/InputForm';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
+    <>
+      <header>
         <h1>TigerApp</h1>
         <InputForm />
       </header>
-    </div>
+    </>
   );
 }
 
