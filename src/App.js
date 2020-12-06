@@ -1,14 +1,15 @@
 import './App.css';
 import { InputForm } from './componentes/InputForm';
+import Navbar from './componentes/Navbar';
 
 function App() {
   return (
-    <>
-      <header>
-        <h1>TigerApp</h1>
+    <div>
+      <Navbar />
+      <header>    
         <InputForm />
       </header>
-    </>
+    </div>
   );
 }
 
