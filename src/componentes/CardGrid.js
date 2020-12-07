@@ -1,15 +1,19 @@
 import React from "react";
-import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
+import { GridListTile, GridListTileBar } from "@material-ui/core";
 
 const CardGrid = ({ movies }) => {
+  
   return (
     <Container>
-      <Grid container fluid spacing={6}>
-        {movies.map((movie) => (
-          <Grid item xs={3}></Grid>
-        ))}
-      </Grid>
+      {movies.map((tile) => (
+          <GridListTile key={tile.title}>
+            <img src={`https://image.tmdb.org/t/p/w500/${tile.poster_path}`} alt={tile.title} />
+            <GridListTileBar
+              title={tile.title}       
+            />
+          </GridListTile>
+        ))}     
     </Container>
   );
 };
