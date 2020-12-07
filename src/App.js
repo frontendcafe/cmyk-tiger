@@ -1,5 +1,5 @@
-import './App.css';
-import { InputForm } from './componentes/InputForm';
+import "./App.css";
+import { InputForm } from "./componentes/InputForm";
 
 function App() {
   return (
