@@ -2,7 +2,7 @@ import React from "react";
 import { Card, CardMedia, CardContent, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-const CardMovie = ({ movie }) => {
+const MovieCard = ({ movie }) => {
   const useStyles = makeStyles((theme) => ({
     root: {
       width: "23%"
@@ -52,4 +52,4 @@ const CardMovie = ({ movie }) => {
   );
 };
 
-export default CardMovie;
+export default MovieCard;
