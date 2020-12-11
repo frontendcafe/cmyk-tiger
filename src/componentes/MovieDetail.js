@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Rating from "@material-ui/lab/Rating";
 
 import { makeStyles } from "@material-ui/core";
-import { peli } from "../peli";
+
+import { useParams } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   poster: {
@@ -15,10 +16,31 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const MovieDetail = () => {
+
+  const {id} = useParams();
+
+  const [peli, setPeli] = useState(null);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  async function fetchData() {
+    const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}`;
+
+    const resp = await fetch(url);
+    const data = await resp.json();
+
+    setPeli(data);
+  }
+
+  console.log(peli);
+
   const classes = useStyles();
   return (
     <Container>
-      <Grid container direction='row' spacing={0} justify='center'>
+    {
+      peli && <Grid container direction='row' spacing={0} justify='center'>
         <Grid item xs={4}>
           <a href={`https://imdb.com/title/${peli.imdb_id}`} target='_blank'>
             <img
@@ -71,6 +93,8 @@ export const MovieDetail = () => {
           </Grid>
         </Grid>
       </Grid>
+    }
+      
     </Container>
   );
 };
