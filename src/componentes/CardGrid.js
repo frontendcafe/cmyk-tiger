@@ -1,9 +1,9 @@
 import React from "react";
 import Container from "@material-ui/core/Container";
-import { GridListTile, GridListTileBar } from "@material-ui/core";
 import MovieCard from "./MovieCard";
 
 const CardGrid = ({ movies }) => {
+  console.log(movies);
   return (
     <Container>
       {movies.map((tile) => (
