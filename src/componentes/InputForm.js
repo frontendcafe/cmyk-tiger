@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import { InputBase } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
+import { useHistory, withRouter } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -58,7 +59,8 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export const InputForm = ({handleSubmit}) => {
+const InputForm = ({handleSubmit}) => {
+  let history = useHistory();
   const classes = useStyles();
 
   const [valorInput, setValorInput] = useState();
@@ -67,6 +69,7 @@ export const InputForm = ({handleSubmit}) => {
     setValorInput(e.target.value);
   };
   const handleForm = async (e) => {
+    
     e.preventDefault();
     
     // TODO: Implementar un Hook para los FETCH
@@ -79,6 +82,7 @@ export const InputForm = ({handleSubmit}) => {
     handleSubmit(data.results);
     // limpiamos el formulario
     setValorInput("");
+    history.push('/');
   }
 
   return (
@@ -104,3 +108,5 @@ export const InputForm = ({handleSubmit}) => {
     </form>
   );
 };
+
+export default withRouter(InputForm)
