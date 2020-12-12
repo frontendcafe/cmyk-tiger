@@ -58,15 +58,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     '& > *': {
-//       margin: theme.spacing(1),
-//       width: '25ch',
-//     },
-//   },
-// }));
-export const InputForm = () => {
+export const InputForm = ({handleSubmit}) => {
   const classes = useStyles();
 
   const [valorInput, setValorInput] = useState();
@@ -74,15 +66,33 @@ export const InputForm = () => {
   const handleInputChange = (e) => {
     setValorInput(e.target.value);
   };
+  const handleForm = async (e) => {
+    e.preventDefault();
+    
+    // TODO: Implementar un Hook para los FETCH
+
+    const resp = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&language=en-US&query=${valorInput}&page=1&include_adult=false`)
+
+    const data = await resp.json();
+
+    // modificamos el state de App con setPelis que nos pasaron como props
+    handleSubmit(data.results);
+    // limpiamos el formulario
+    setValorInput("");
+  }
 
   return (
-    <form className={classes.root} noValidate autoComplete="off">
-      {/* <TextField onChange={handleInputChange} value={valorInput} id="standard-basic" label="Search" />  */}
+    <form 
+      onSubmit={handleForm}
+      className={classes.root} noValidate autoComplete="off">
+ 
       <div className={classes.search}>
         <div className={classes.searchIcon}>
           <SearchIcon />
         </div>
         <InputBase
+          onChange={handleInputChange}
+          value={valorInput}
           placeholder="Search…"
           classes={{
             root: classes.inputRoot,
