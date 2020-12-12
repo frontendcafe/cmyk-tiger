@@ -1,0 +1,13 @@
+body {
+  font-family: 'Roboto';
+  margin: 0;
+}
+a {
+  color: white;
+  text-decoration: none;
+  &:hover {
+    color: darken($color:white, $amount: 5);
+    text-decoration: underline;
+  }
+}
+
