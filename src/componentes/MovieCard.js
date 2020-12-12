@@ -6,53 +6,53 @@ import { Link } from "react-router-dom";
 const MovieCard = ({ movie }) => {
   const useStyles = makeStyles((theme) => ({
     root: {
-      width: "23%"
+      width: "100%",
+      height: "100%",
     },
     img: {
       maxHeight: "15rem",
-      width: "95%",
       marginTop: "0.5rem;",
-      borderRadius: "5px"
+      borderRadius: "5px",
     },
     title: {
       color: "#f50057",
-      textAlign: "center"
+      textAlign: "center",
     },
     imgDiv: {
       display: "flex",
       justifyContent: "center",
-      alignItems: "center"
+      alignItems: "center",
     },
     resumen: {
-      fontSize: "0.8rem"
-    }
+      fontSize: "0.8rem",
+    },
+    noLink: {
+      textDecoration: "none",
+    },
   }));
 
   const classes = useStyles();
-  
+
   return (
-    <div>
-    <Link to={`/movie/${movie.id}`}>
+    <Link to={`/movie/${movie.id}`} className={classes.noLink}>
       <Card className={classes.root}>
-          <CardMedia className={classes.imgDiv}>
-            <img
-              className={classes.img} 
-              src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
-              alt={movie.title}
-            />
-          </CardMedia>
-          <CardContent>
-            <Typography className={classes.title} variant="h5">
-              {movie.title}
-            </Typography>
-            <Typography className={classes.resumen} variant="h6">
-              {movie.overview}
-            </Typography>
-          </CardContent>
-        </Card>
+        <CardMedia className={classes.imgDiv}>
+          <img
+            className={classes.img}
+            src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
+            alt={movie.title}
+          />
+        </CardMedia>
+        <CardContent>
+          <Typography className={classes.title} variant='h5'>
+            {movie.title}
+          </Typography>
+          <Typography className={classes.resumen} variant='h6'>
+            {movie.overview}
+          </Typography>
+        </CardContent>
+      </Card>
     </Link>
-      
-    </div>
   );
 };
 
