@@ -3,6 +3,7 @@ import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Rating from "@material-ui/lab/Rating";
+import Chip from "@material-ui/core/Chip";
 
 import { makeStyles } from "@material-ui/core";
 
@@ -11,13 +12,13 @@ import { useParams } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   poster: {
     maxWidth: "350px",
+    width: "100%",
     borderRadius: "10px",
   },
 }));
 
 export const MovieDetail = () => {
-
-  const {id} = useParams();
+  const { id } = useParams();
 
   const [peli, setPeli] = useState(null);
 
@@ -39,30 +40,46 @@ export const MovieDetail = () => {
   const classes = useStyles();
   return (
     <Container>
-    {
-      peli && <Grid container direction='row' spacing={0} justify='center'>
-        <Grid item xs={4}>
-          <a href={`https://imdb.com/title/${peli.imdb_id}`} target='_blank'>
-            <img
-              className={classes.poster}
-              src={`https://image.tmdb.org/t/p/w500/${peli.poster_path}`}
-              alt=''
-            />
-          </a>
+      <Grid container justify='center' spacing={2}>
+        <Grid container item justify='center' xs={12} md={4}>
+          <Grid item>
+            <a
+              href={`https://imdb.com/title/${peli.imdb_id}`}
+              target='_blank'
+              rel='noreferrer'
+            >
+              <img
+                className={classes.poster}
+                src={`https://image.tmdb.org/t/p/w500/${peli.poster_path}`}
+                alt=''
+              />
+            </a>
+          </Grid>
         </Grid>
-        <Grid item container direction='column' spacing={8} xs={8}>
+        <Grid item container direction='column' spacing={8} xs={12} md={8}>
           <Grid item container spacing={3}>
             <Grid item>
               <Typography variant='h3'>
                 {peli.original_title} ({peli.release_date.slice(0, 4)})
               </Typography>
             </Grid>
-            <Grid item container direction='row' spacing={2}>
-              <Grid item>
-                <Typography variant='body1'>
-                  {peli.genres.map((genre) => `${genre.name}`).join(", ")}
-                </Typography>
-              </Grid>
+            <Grid
+              item
+              container
+              direction='row'
+              spacing={2}
+              alignItems='center'
+            >
+              {peli.genres.map((genre) => (
+                <Grid item>
+                  <Chip
+                    size='normal'
+                    variant='default'
+                    color='primary'
+                    label={`${genre.name}`}
+                  />
+                </Grid>
+              ))}
               <Grid item>
                 <Typography variant='body1'>{peli.runtime} min</Typography>
               </Grid>
@@ -85,7 +102,7 @@ export const MovieDetail = () => {
           </Grid>
           <Grid item container spacing={2}>
             <Grid item>
-              <Typography variant='h5'>Reseña</Typography>
+              <Typography variant='h5'>Overview</Typography>
             </Grid>
             <Grid item>
               <Typography varian='body2'>{peli.overview}</Typography>
@@ -93,8 +110,6 @@ export const MovieDetail = () => {
           </Grid>
         </Grid>
       </Grid>
-    }
-      
     </Container>
   );
 };
