@@ -40,76 +40,84 @@ export const MovieDetail = () => {
   const classes = useStyles();
   return (
     <Container>
-      <Grid container justify='center' spacing={2}>
-        <Grid container item justify='center' xs={12} md={4}>
-          <Grid item>
-            <a
-              href={`https://imdb.com/title/${peli.imdb_id}`}
-              target='_blank'
-              rel='noreferrer'
-            >
-              <img
-                className={classes.poster}
-                src={`https://image.tmdb.org/t/p/w500/${peli.poster_path}`}
-                alt=''
-              />
-            </a>
-          </Grid>
-        </Grid>
-        <Grid item container direction='column' spacing={8} xs={12} md={8}>
-          <Grid item container spacing={3}>
+      {peli && (
+        <Grid container justify='center' spacing={2}>
+          <Grid container item justify='center' xs={12} md={4}>
             <Grid item>
-              <Typography variant='h3'>
-                {peli.original_title} ({peli.release_date.slice(0, 4)})
-              </Typography>
+              <a
+                href={`https://imdb.com/title/${peli.imdb_id}`}
+                target='_blank'
+                rel='noreferrer'
+              >
+                <img
+                  className={classes.poster}
+                  src={`https://image.tmdb.org/t/p/w500/${peli.poster_path}`}
+                  alt=''
+                />
+              </a>
             </Grid>
-            <Grid
-              item
-              container
-              direction='row'
-              spacing={2}
-              alignItems='center'
-            >
-              {peli.genres.map((genre) => (
+          </Grid>
+          <Grid item container direction='column' spacing={8} xs={12} md={8}>
+            <Grid item container spacing={3}>
+              <Grid item>
+                <Typography variant='h3'>
+                  {peli.original_title} ({peli.release_date.slice(0, 4)})
+                </Typography>
+              </Grid>
+              <Grid
+                item
+                container
+                direction='row'
+                spacing={2}
+                alignItems='center'
+              >
+                {peli.genres.map((genre) => (
+                  <Grid item>
+                    <Chip
+                      size='normal'
+                      variant='default'
+                      color='primary'
+                      label={`${genre.name}`}
+                    />
+                  </Grid>
+                ))}
                 <Grid item>
-                  <Chip
-                    size='normal'
-                    variant='default'
-                    color='primary'
-                    label={`${genre.name}`}
+                  <Typography variant='body1'>{peli.runtime} min</Typography>
+                </Grid>
+              </Grid>
+              <Grid
+                item
+                container
+                direcion='row'
+                alignItems='center'
+                spacing={2}
+              >
+                <Grid item>
+                  <Rating
+                    name='half-rating-read'
+                    defaultValue={peli.vote_average}
+                    precision={0.1}
+                    max={10}
+                    size='large'
+                    readOnly
                   />
                 </Grid>
-              ))}
+                <Grid>
+                  <Typography variant='h6'>{peli.vote_average}</Typography>
+                </Grid>
+              </Grid>
+            </Grid>
+            <Grid item container spacing={2}>
               <Grid item>
-                <Typography variant='body1'>{peli.runtime} min</Typography>
+                <Typography variant='h5'>Overview</Typography>
               </Grid>
-            </Grid>
-            <Grid item container direcion='row' alignItems='center' spacing={2}>
               <Grid item>
-                <Rating
-                  name='half-rating-read'
-                  defaultValue={peli.vote_average}
-                  precision={0.1}
-                  max={10}
-                  size='large'
-                  readOnly
-                />
+                <Typography varian='body2'>{peli.overview}</Typography>
               </Grid>
-              <Grid>
-                <Typography variant='h6'>{peli.vote_average}</Typography>
-              </Grid>
-            </Grid>
-          </Grid>
-          <Grid item container spacing={2}>
-            <Grid item>
-              <Typography variant='h5'>Overview</Typography>
-            </Grid>
-            <Grid item>
-              <Typography varian='body2'>{peli.overview}</Typography>
             </Grid>
           </Grid>
         </Grid>
-      </Grid>
+      )}
     </Container>
   );
 };
