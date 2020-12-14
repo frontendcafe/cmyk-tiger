@@ -6,7 +6,7 @@ import { useHistory, withRouter } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1
+    flexGrow: 0
   },
   menuButton: {
     marginRight: theme.spacing(2)
@@ -59,37 +59,38 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const InputForm = ({handleSubmit}) => {
+const InputForm = ({ handleSubmit }) => {
+
   let history = useHistory();
   const classes = useStyles();
 
-  const [valorInput, setValorInput] = useState();
+  const [valorInput, setValorInput] = useState("");
 
   const handleInputChange = (e) => {
     setValorInput(e.target.value);
   };
   const handleForm = async (e) => {
-    
+
     e.preventDefault();
-    
-    // TODO: Implementar un Hook para los FETCH
 
-    const resp = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&language=en-US&query=${valorInput}&page=1&include_adult=false`)
 
-    const data = await resp.json();
+    // const resp = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&language=en-US&query=${valorInput}&page=1&include_adult=false`)
 
-    // modificamos el state de App con setPelis que nos pasaron como props
-    handleSubmit(data.results);
-    // limpiamos el formulario
+    // const data = await resp.json();
+
+    // // modificamos el state de App con setPelis que nos pasaron como props
+    // handleSubmit(data.results);
+    // // limpiamos el formulario
     setValorInput("");
-    history.push('/');
+    // <Redirect to={`/search/${valorInput}`} />
+    history.push(`/search/${valorInput}`)
   }
 
   return (
-    <form 
+    <form
       onSubmit={handleForm}
       className={classes.root} noValidate autoComplete="off">
- 
+
       <div className={classes.search}>
         <div className={classes.searchIcon}>
           <SearchIcon />
