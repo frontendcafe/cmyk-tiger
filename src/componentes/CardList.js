@@ -39,10 +39,12 @@ const CardList = ({ title, url }) => {
 
   return (
     <Container>
-      {loading && <Spinner />}
-      {data && (
+      <h1>{title}</h1>
+
+      {loading ? (
+        <Spinner />
+      ) : (
         <>
-          <h1>{title}</h1>
           <div className={classes.root}>
             <GridList className={classes.gridList} cols={3.5} cellHeight='auto'>
               {data.map((movie) => (
