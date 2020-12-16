@@ -6,11 +6,14 @@ import { MovieDetail } from "../componentes/MovieDetail";
 import Navbar from "../componentes/Navbar";
 import { SearchResults } from "../componentes/SearchResults";
 import Home from "../componentes/Home";
+import { Footer } from "../componentes/Footer";
+import ScrollToTop from "../componentes/ScrollToTop";
 
 export const AppRouter = () => {
   return (
     <div>
       <BrowserRouter>
+        <ScrollToTop />
         <Navbar />
         <Switch>
           <Route exact path='/'>
@@ -26,6 +29,7 @@ export const AppRouter = () => {
             <SearchResults />
           </Route>
         </Switch>
+        <Footer />
       </BrowserRouter>
     </div>
   );

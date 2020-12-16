@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const InputForm = ({ handleSubmit }) => {
+const InputForm = () => {
 
   let history = useHistory();
   const classes = useStyles();
