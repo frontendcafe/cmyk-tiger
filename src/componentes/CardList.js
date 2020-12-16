@@ -21,7 +21,11 @@ const useStyles = makeStyles((theme) => ({
     transform: "translateZ(0)",
   },
   imgRound: {
+    height: 250,
     borderRadius: "15px",
+    '&:hover': {
+      opacity: 0.8
+    },
   },
   title: {
     color: theme.palette.primary.light,
@@ -51,7 +55,7 @@ const CardList = ({ title, url }) => {
   } else {
     return (
       <Container>
-        <h1>{title}</h1>
+        <h3>{title}</h3>
 
         {loading ? (
           <Spinner />
