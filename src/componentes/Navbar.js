@@ -3,7 +3,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { fade, makeStyles } from "@material-ui/core/styles";
-import  InputForm  from "./InputForm";
+import InputForm from "./InputForm";
 import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SearchAppBar({handleSubmit}) {
+export default function SearchAppBar({ handleSubmit }) {
   const classes = useStyles();
 
   return (
@@ -71,7 +71,7 @@ export default function SearchAppBar({handleSubmit}) {
         <Toolbar>
           <Typography className={classes.title} variant='h6' noWrap>
             <Link to="/">
-            <i className="fas fa-film"></i>
+              <i className="fas fa-film"></i>
             </Link>
           </Typography>
           <Typography
@@ -87,7 +87,7 @@ export default function SearchAppBar({handleSubmit}) {
               About
             </Link>
           </Typography>
-          <InputForm handleSubmit={handleSubmit} />
+          <InputForm />
         </Toolbar>
       </AppBar>
     </div>

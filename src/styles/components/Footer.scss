@@ -1,0 +1,11 @@
+footer {
+  
+  padding: 5rem;
+  font-size: .8rem;
+  color: darken($color: white, $amount: 30);
+  background-color: lighten($color: black, $amount: 20);
+  margin-top: 2rem;
+  display: grid;
+  place-items: center;
+  grid-template-columns: 1fr 1fr 1fr;
+}

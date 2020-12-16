@@ -3,6 +3,7 @@ import { fade, makeStyles } from "@material-ui/core/styles";
 import { InputBase } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import { useHistory, withRouter } from "react-router-dom";
+import Swal from 'sweetalert2';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -59,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const InputForm = ({ handleSubmit }) => {
+const InputForm = () => {
 
   let history = useHistory();
   const classes = useStyles();
@@ -73,17 +74,17 @@ const InputForm = ({ handleSubmit }) => {
 
     e.preventDefault();
 
+    if (!valorInput) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'You must search for something!'
+      })
+    } else {
+      setValorInput("");
+      history.push(`/search/${valorInput}`)
+    }
 
-    // const resp = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&language=en-US&query=${valorInput}&page=1&include_adult=false`)
-
-    // const data = await resp.json();
-
-    // // modificamos el state de App con setPelis que nos pasaron como props
-    // handleSubmit(data.results);
-    // // limpiamos el formulario
-    setValorInput("");
-    // <Redirect to={`/search/${valorInput}`} />
-    history.push(`/search/${valorInput}`)
   }
 
   return (
