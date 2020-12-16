@@ -3,6 +3,8 @@ import Container from "@material-ui/core/Container";
 import CardList from "./CardList";
 
 const Home = () => {
+  // no soy muy fan de poner la URl en las props
+  // habrá una forma de implementarlos de otra manera?
   return (
     <Container>
       <CardList

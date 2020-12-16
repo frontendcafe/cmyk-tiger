@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import GridList from "@material-ui/core/GridList";
 import Container from "@material-ui/core/Container";
@@ -30,6 +30,11 @@ const useStyles = makeStyles((theme) => ({
     background:
       "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)",
   },
+  cardContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: 50,
+  }
 }));
 
 const CardList = ({ title, url }) => {
@@ -37,37 +42,50 @@ const CardList = ({ title, url }) => {
 
   const { data, loading, error } = useFetch(url);
 
-  return (
-    <Container>
-      <h1>{title}</h1>
+  if (data && (data.length === 0)) {
+    return (
+      <Container className={classes.cardContainer}>
+        <h3>No results, try again.</h3>
+      </Container>
+    )
+  } else {
+    return (
+      <Container>
+        <h1>{title}</h1>
 
-      {loading ? (
-        <Spinner />
-      ) : (
-        <>
-          <div className={classes.root}>
-            <GridList className={classes.gridList} cols={3.5} cellHeight='auto'>
-              {data.map((movie) => (
-                <Link to={`/movie/${movie.id}`} key={movie.id}>
-                  <img
-                    src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
-                    alt={movie.title}
-                    className={classes.imgRound}
-                  />
-                  <Typography
-                    variant='h6'
-                    style={{ color: "black", textDecoration: "none" }}
-                  >
-                    {movie.title}
-                  </Typography>
-                </Link>
-              ))}
-            </GridList>
-          </div>
-        </>
-      )}
-    </Container>
-  );
+        {loading ? (
+          <Spinner />
+        ) : (
+            <>
+              <div className={classes.root}>
+                <GridList className={classes.gridList} cols={3.5} cellHeight='auto'>
+                  {data.map((movie) => (
+                    <Link to={`/movie/${movie.id}`} key={movie.id}>
+                      <img
+                        src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
+                        alt={movie.title}
+                        className={classes.imgRound}
+                      />
+                      <Typography
+                        variant='h6'
+                        style={{ color: "black", textDecoration: "none" }}
+                      >
+                        {movie.title}
+                      </Typography>
+                    </Link>
+                  ))}
+                </GridList>
+              </div>
+            </>
+          )}
+      </Container>
+    );
+  }
+
+
+
+
+
 };
 
 export default CardList;
