@@ -13,7 +13,11 @@ const useStyles = makeStyles((theme) => ({
   poster: {
     maxWidth: "350px",
     width: "100%",
+    filter: 'grayscale(30%)',
     borderRadius: "10px",
+    '&:hover': {
+      filter: 'grayscale(0%)'
+    }
   },
 }));
 
@@ -35,7 +39,6 @@ export const MovieDetail = () => {
     setPeli(data);
   }
 
-  console.log(peli);
 
   const classes = useStyles();
   return (

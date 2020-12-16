@@ -23,8 +23,10 @@ const useStyles = makeStyles((theme) => ({
   imgRound: {
     height: 250,
     borderRadius: "15px",
+    opacity: 0.85,
+    transition: 'opacity 0.2s linear',
     '&:hover': {
-      opacity: 0.8
+      opacity: 1
     },
   },
   title: {

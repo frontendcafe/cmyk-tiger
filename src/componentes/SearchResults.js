@@ -8,7 +8,7 @@ export const SearchResults = () => {
 
   return (
     <Container>
-      <Typography variant="h3" align="center" paragraph>
+      <Typography variant="h4" align="center" paragraph>
         Search Results for: {query}
       </Typography>
       {
