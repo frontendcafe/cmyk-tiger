@@ -66,7 +66,6 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgb(255,255,255, 0.7)",
     margin: "2rem auto",
     padding: ".8rem",
     backgroundColor: "#fafafa",
@@ -98,7 +97,7 @@ export const About = () => {
         <Grid container spacing={3} justify='center'>
           {info.map((user) => (
             <Grid item container md={4} sm={7} key={user.username}>
-              <Paper className={classes.paper} elevation='5'>
+              <Paper className={classes.paper} elevation={5}>
                 <Grid
                   item
                   container
