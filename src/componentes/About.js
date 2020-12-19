@@ -81,12 +81,21 @@ export const About = () => {
           Movie Search App
         </Typography>
         <Typography
-          variant='subtitle1'
-          className={classes.headerTitle}
+          variant='h6'
+          className={`${classes.headerTitle} ${classes.marginY}`}
           align='center'
         >
           Busca peliculas a traves de la API de{" "}
           <strong>The Movie Database</strong>
+        </Typography>
+        <Typography
+          variant='subtitle1'
+          className={classes.headerTitle}
+          align='center'
+        >
+          Este proyecto forma parte de <strong>CMYK++ </strong> una iniciativa
+          de <strong>FrontendCafe</strong> para facilitar el desarrollo de
+          proyectos colaborativos
         </Typography>
       </div>
 
