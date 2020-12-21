@@ -11,9 +11,11 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     marginBottom: "3rem",
   },
+
   menuButton: {
     marginRight: theme.spacing(2),
   },
+
   title: {
     flexGrow: 1,
     display: "none",
@@ -67,25 +69,15 @@ export default function SearchAppBar({ handleSubmit }) {
 
   return (
     <div className={classes.root}>
-      <AppBar color='secondary' position='static'>
+      <AppBar position='static' color='secondary'>
         <Toolbar>
           <Typography className={classes.title} variant='h6' noWrap>
-            <Link to="/">
-              <i className="fas fa-film"></i>
+            <Link to='/'>
+              <i className='fas fa-film'></i>
             </Link>
-          </Typography>
-          <Typography
-            align='left'
-            className={classes.title}
-            variant='h6'
-            noWrap
-          >
-            Home
           </Typography>
           <Typography className={classes.title} variant='h6' noWrap>
-            <Link to="/about">
-              About
-            </Link>
+            <Link to='/about'>About</Link>
           </Typography>
           <InputForm />
         </Toolbar>
