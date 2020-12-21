@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Rating from "@material-ui/lab/Rating";
 import Chip from "@material-ui/core/Chip";
 
-import { Button, Divider, Icon, makeStyles } from "@material-ui/core";
+import { Button, makeStyles } from "@material-ui/core";
 
 import { Link, useParams } from "react-router-dom";
 import { useFetch } from "../hooks/useFetch";
@@ -19,8 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
   margin: {
     marginTop: '2rem',
-    marginLeft: '50%',
-    transform: 'translateX(-100%)'
+    margin: 'auto'
   },
   poster: {
     transition: 'all ease 0.4s',
@@ -34,6 +33,9 @@ const useStyles = makeStyles((theme) => ({
       boxShadow: '-4px 4px 10px 1px #ae6e17'
     }
   },
+  container: {
+    minHeight: '100vh'
+  }
 }));
 
 export const MovieDetail = () => {
@@ -50,7 +52,7 @@ export const MovieDetail = () => {
   } else if (peli && peli.length !== 0) {
 
     return (
-      <Container>
+      <Container className={classes.container}>
         <Grid container justify='center' spacing={2}>
           <Grid container item justify='center' xs={12} md={4}>
 
@@ -128,8 +130,8 @@ export const MovieDetail = () => {
               <Grid item>
                 <Typography varian='subtitle1'>{peli.overview}</Typography>
               </Grid>
-              <Link to="/">
-                <Button variant="contained" size="medium" color="primary" size="medium" className={classes.margin}>
+              <Link className={classes.margin} to="/">
+                <Button variant="contained" size="medium" color="primary">
                   Back
               </Button></Link>
             </Grid>
