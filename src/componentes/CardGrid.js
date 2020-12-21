@@ -23,7 +23,7 @@ const CardGrid = ({ category = "", query = "" }) => {
     url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&language=en-US&query=${query}&page=1&include_adult=false`
   }
 
-  const { data, loading, error } = useFetch(url);
+  const { data, loading } = useFetch(url);
 
   return (
     <Container>
