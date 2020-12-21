@@ -24,9 +24,9 @@ const useStyles = makeStyles((theme) => ({
     height: 250,
     borderRadius: "15px",
     opacity: 0.85,
-    transition: 'opacity 0.2s linear',
-    '&:hover': {
-      opacity: 1
+    transition: "opacity 0.2s linear",
+    "&:hover": {
+      opacity: 1,
     },
   },
   title: {
@@ -37,60 +37,58 @@ const useStyles = makeStyles((theme) => ({
       "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)",
   },
   cardContainer: {
-    display: 'flex',
-    justifyContent: 'center',
+    display: "flex",
+    justifyContent: "center",
     marginTop: 50,
-  }
+  },
 }));
 
 const CardList = ({ title, url }) => {
   const classes = useStyles();
 
-  const { data, loading, error } = useFetch(url);
+  let { data, loading } = useFetch(url);
 
-  if (data && (data.length === 0)) {
+  if (loading) {
     return (
-      <Container className={classes.cardContainer}>
-        <h3>No results, try again.</h3>
-      </Container>
+      <Spinner />
     )
-  } else {
+  } else if (data && data.results.length !== 0) {
     return (
       <Container>
         <h3>{title}</h3>
 
-        {loading ? (
-          <Spinner />
-        ) : (
-            <>
-              <div className={classes.root}>
-                <GridList className={classes.gridList} cols={3.5} cellHeight='auto'>
-                  {data.map((movie) => (
-                    <Link to={`/movie/${movie.id}`} key={movie.id}>
-                      <img
-                        src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
-                        alt={movie.title}
-                        className={classes.imgRound}
-                      />
-                      <Typography
-                        variant='h6'
-                        style={{ color: "black", textDecoration: "none" }}
-                      >
-                        {movie.title}
-                      </Typography>
-                    </Link>
-                  ))}
-                </GridList>
-              </div>
-            </>
-          )}
+        <div className={classes.root}>
+          <GridList className={classes.gridList} cols={0} cellHeight='auto'>
+            {data.results.map((movie) => (
+              <Link to={`/movie/${movie.id}`} key={movie.id}>
+                <img
+                  src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
+                  alt={movie.title}
+                  className={classes.imgRound}
+                />
+                <Typography
+                  variant='h6'
+                  style={{ color: "black", textDecoration: "none" }}
+                >
+                  {movie.title}
+                </Typography>
+              </Link>
+            ))}
+          </GridList>
+        </div>
+      </Container>
+
+
+
+
+    )
+  } else {
+    return (
+      <Container className={classes.cardContainer}>
+        <h3>No results, try again.</h3>
       </Container>
     );
   }
-
-
-
-
 
 };
 

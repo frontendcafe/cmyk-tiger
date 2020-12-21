@@ -16,8 +16,6 @@ const useStyles = makeStyles((theme) => ({
 const CardGrid = ({ data }) => {
   const classes = useStyles();
 
-  //const { data, loading } = useFetch(url);
-
   return (
     <Container>
       {/* {loading && <Spinner />} */}
