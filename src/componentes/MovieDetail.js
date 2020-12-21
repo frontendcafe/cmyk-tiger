@@ -85,9 +85,9 @@ export const MovieDetail = () => {
                 alignItems='center'
               >
                 {peli.genres.map((genre) => (
-                  <Grid item>
+                  <Grid key={genre.name} item>
                     <Chip
-                      size='normal'
+                      size='medium'
                       variant='default'
                       color='primary'
                       label={`${genre.name}`}
