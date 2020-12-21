@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { About } from "../componentes/About";
-import CardGrid from "../componentes/CardGrid";
 import { MovieDetail } from "../componentes/MovieDetail";
 import Navbar from "../componentes/Navbar";
 import { SearchResults } from "../componentes/SearchResults";
