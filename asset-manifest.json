@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/cmyk-tiger/static/css/main.615d0a33.chunk.css",
-    "main.js": "/cmyk-tiger/static/js/main.44c87020.chunk.js",
-    "main.js.map": "/cmyk-tiger/static/js/main.44c87020.chunk.js.map",
+    "main.css": "/cmyk-tiger/static/css/main.79ce9641.chunk.css",
+    "main.js": "/cmyk-tiger/static/js/main.9e11119c.chunk.js",
+    "main.js.map": "/cmyk-tiger/static/js/main.9e11119c.chunk.js.map",
     "runtime-main.js": "/cmyk-tiger/static/js/runtime-main.9a188e59.js",
     "runtime-main.js.map": "/cmyk-tiger/static/js/runtime-main.9a188e59.js.map",
-    "static/js/2.5185321b.chunk.js": "/cmyk-tiger/static/js/2.5185321b.chunk.js",
-    "static/js/2.5185321b.chunk.js.map": "/cmyk-tiger/static/js/2.5185321b.chunk.js.map",
+    "static/js/2.1be8e9f9.chunk.js": "/cmyk-tiger/static/js/2.1be8e9f9.chunk.js",
+    "static/js/2.1be8e9f9.chunk.js.map": "/cmyk-tiger/static/js/2.1be8e9f9.chunk.js.map",
     "index.html": "/cmyk-tiger/index.html",
-    "static/css/main.615d0a33.chunk.css.map": "/cmyk-tiger/static/css/main.615d0a33.chunk.css.map",
-    "static/js/2.5185321b.chunk.js.LICENSE.txt": "/cmyk-tiger/static/js/2.5185321b.chunk.js.LICENSE.txt"
+    "static/css/main.79ce9641.chunk.css.map": "/cmyk-tiger/static/css/main.79ce9641.chunk.css.map",
+    "static/js/2.1be8e9f9.chunk.js.LICENSE.txt": "/cmyk-tiger/static/js/2.1be8e9f9.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.9a188e59.js",
-    "static/js/2.5185321b.chunk.js",
-    "static/css/main.615d0a33.chunk.css",
-    "static/js/main.44c87020.chunk.js"
+    "static/js/2.1be8e9f9.chunk.js",
+    "static/css/main.79ce9641.chunk.css",
+    "static/js/main.9e11119c.chunk.js"
   ]
 }
