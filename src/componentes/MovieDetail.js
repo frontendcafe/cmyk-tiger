@@ -33,6 +33,9 @@ const useStyles = makeStyles((theme) => ({
       boxShadow: '-4px 4px 10px 1px #ae6e17'
     }
   },
+  title: {
+    fontSize: '1.2rem'
+  },
   container: {
     minHeight: '100vh'
   }
@@ -54,7 +57,7 @@ export const MovieDetail = () => {
     return (
       <Container className={classes.container}>
         <Grid container justify='center' spacing={2}>
-          <Grid container item justify='center' xs={12} md={4}>
+          <Grid container item justify='center' lg={12} md={3} sm={3} xs={6}>
 
             <Grid item>
               <a
@@ -73,7 +76,7 @@ export const MovieDetail = () => {
           <Grid item container direction='column' spacing={8} xs={12} md={8}>
             <Grid item container spacing={3}>
               <Grid item>
-                <Typography variant='h4'>
+                <Typography className={classes.title}>
                   {peli.original_title} ({peli.release_date.slice(0, 4)})
                 </Typography>
               </Grid>
@@ -116,7 +119,7 @@ export const MovieDetail = () => {
                   />
                 </Grid>
                 <Grid>
-                  <Typography variant='h6'>{peli.vote_average}</Typography>
+                  <Typography className={classes.title}>{peli.vote_average}</Typography>
                 </Grid>
               </Grid>
             </Grid>
