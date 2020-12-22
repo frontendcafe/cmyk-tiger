@@ -23,6 +23,7 @@ const info = [
       "https://avatars1.githubusercontent.com/u/59532138?s=460&u=723204ebc6a06d574e281cadb8ba0331b9cef4c8&v=4",
     desc:
       "",
+    linkedin: "https://www.linkedin.com/in/juan-mart%C3%ADn-cechetto-395202102/",
     github: "https://github.com/jmceche",
   },
   {
@@ -31,6 +32,7 @@ const info = [
       "https://avatars3.githubusercontent.com/u/58148530?s=400&u=dee5ae2a662869786d58b280287bf9d1cbd41437&v=4",
     desc:
       "",
+    linkedin: "https://www.linkedin.com/in/milagros-liliana-alfonzo/",
     github: "https://github.com/miloalfonzo",
   },
 ];
