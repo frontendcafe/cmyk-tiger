@@ -13,11 +13,13 @@ const MovieCard = ({ movie }) => {
       alignItems: "center",
     },
     img: {
-      maxWidth: "220px",
-      maxHeight: "330px",
+      width: '100%',
+      // maxWidth: "220px",
+      // maxHeight: "330px",
       borderRadius: "10px",
     },
     title: {
+      fontSize: '16px',
       color: "#000000",
       textAlign: "center",
       justifySelf: "center",
