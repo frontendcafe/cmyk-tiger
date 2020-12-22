@@ -6,7 +6,7 @@ import Chip from "@material-ui/core/Chip";
 import Typography from "@material-ui/core/Typography";
 
 import { makeStyles, ThemeProvider } from "@material-ui/styles";
-import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles'
+import { createMuiTheme } from '@material-ui/core/styles'
 
 const info = [
   {
