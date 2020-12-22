@@ -10,21 +10,27 @@ import { makeStyles } from "@material-ui/styles";
 const info = [
   {
     username: "Eze",
-    image: "https://i.imgur.com/ZOKp8LH.jpg",
+    image:
+      "https://avatars0.githubusercontent.com/u/51804994?s=400&u=089acb84462ed58da2ea3c4e4fab55b89a572134&v=4",
     desc:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis odit numquam adipisci, enim sequi asperiores soluta doloremque. Ad reiciendis ab recusandae dolorum atque?",
+    github: "https://github.com/EzequielCaste",
   },
   {
     username: "Frunobulax",
-    image: "https://i.imgur.com/ZOKp8LH.jpg",
+    image:
+      "https://avatars1.githubusercontent.com/u/59532138?s=460&u=723204ebc6a06d574e281cadb8ba0331b9cef4c8&v=4",
     desc:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis odit numquam adipisci, enim sequi asperiores soluta doloremque. Ad reiciendis ab recusandae dolorum atque?",
+    github: "https://github.com/jmceche",
   },
   {
     username: "Milo",
-    image: "https://i.imgur.com/ZOKp8LH.jpg",
+    image:
+      "https://avatars3.githubusercontent.com/u/58148530?s=400&u=dee5ae2a662869786d58b280287bf9d1cbd41437&v=4",
     desc:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis odit numquam adipisci, enim sequi asperiores soluta doloremque. Ad reiciendis ab recusandae dolorum atque?",
+    github: "https://github.com/miloalfonzo",
   },
 ];
 
@@ -137,11 +143,7 @@ export const About = () => {
                     spacing={1}
                   >
                     <Grid item>
-                      <a
-                        href='https://github.com'
-                        target='_blank'
-                        rel='noreferrer'
-                      >
+                      <a href={user.github} target='_blank' rel='noreferrer'>
                         <Chip label='Github' variant='outlined' clickable />
                       </a>
                     </Grid>
