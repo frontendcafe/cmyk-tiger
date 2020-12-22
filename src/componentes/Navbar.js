@@ -62,6 +62,10 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
+  right: {
+    display: "flex",
+    flexDirection: "row",
+  },
 }));
 
 export default function SearchAppBar({ handleSubmit }) {
@@ -76,10 +80,14 @@ export default function SearchAppBar({ handleSubmit }) {
               <i className='fas fa-film'></i>
             </Link>
           </Typography>
-          <Typography className={classes.title} variant='h6' noWrap>
-            <Link to='/about'>About</Link>
-          </Typography>
-          <InputForm />
+          <div className={classes.right}>
+            <Typography variant='h6' noWrap>
+              <Link to='/about' style={{ marginRight: "2rem" }}>
+                About
+              </Link>
+            </Typography>
+            <InputForm />
+          </div>
         </Toolbar>
       </AppBar>
     </div>
