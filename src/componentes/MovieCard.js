@@ -2,18 +2,19 @@ import React from "react";
 import { Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
+import no_image from "../assets/no_image.png";
 
 const MovieCard = ({ movie }) => {
   const useStyles = makeStyles((theme) => ({
     root: {
-      /* width: "100%", */
-      /*  height: "100%", */
       display: "flex",
       flexDirection: "column",
       justifyContent: "space-between",
+      alignItems: "center",
     },
     img: {
-      maxWidth: "100%",
+      maxWidth: "220px",
+      maxHeight: "330px",
       borderRadius: "10px",
     },
     title: {
@@ -38,7 +39,11 @@ const MovieCard = ({ movie }) => {
     >
       <img
         className={classes.img}
-        src={`https://image.tmdb.org/t/p/w220_and_h330_face/${movie.poster_path}`}
+        src={
+          movie.poster_path
+            ? `https://image.tmdb.org/t/p/w220_and_h330_face/${movie.poster_path}`
+            : no_image
+        }
         alt={movie.title}
       />
       <Typography className={classes.title} variant='h5'>
