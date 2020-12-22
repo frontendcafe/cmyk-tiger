@@ -38,7 +38,7 @@ const MovieCard = ({ movie }) => {
     >
       <img
         className={classes.img}
-        src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
+        src={`https://image.tmdb.org/t/p/w220_and_h330_face/${movie.poster_path}`}
         alt={movie.title}
       />
       <Typography className={classes.title} variant='h5'>
