@@ -13,7 +13,6 @@ const useStyles = makeStyles((theme) => ({
 const CardGrid = ({ data }) => {
   const classes = useStyles();
 
-  console.log(data);
   return (
     <Container>
       {/* {loading && <Spinner />} */}

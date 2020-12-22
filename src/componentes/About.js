@@ -10,7 +10,7 @@ import { createMuiTheme } from '@material-ui/core/styles'
 
 const info = [
   {
-    username: "Eze",
+    username: "Ezequiel",
     image:
       "https://avatars0.githubusercontent.com/u/51804994?s=400&u=089acb84462ed58da2ea3c4e4fab55b89a572134&v=4",
     desc:
@@ -19,7 +19,7 @@ const info = [
     linkedin: "https://www.linkedin.com/in/ezequiel-castellanos-a9ab6b1b8/"
   },
   {
-    username: "Frunobulax",
+    username: "Juan Martín",
     image:
       "https://avatars1.githubusercontent.com/u/59532138?s=460&u=723204ebc6a06d574e281cadb8ba0331b9cef4c8&v=4",
     desc:
@@ -28,7 +28,7 @@ const info = [
     github: "https://github.com/jmceche",
   },
   {
-    username: "Milo",
+    username: "Milagros",
     image:
       "https://avatars3.githubusercontent.com/u/58148530?s=400&u=dee5ae2a662869786d58b280287bf9d1cbd41437&v=4",
     desc:
@@ -133,7 +133,7 @@ export const About = () => {
             className={`${classes.headerTitle} ${classes.marginY}`}
             align='center'
           >
-            Busca peliculas a traves de la API de{" "}
+            Busca películas a traves de la API de{" "}
             <strong>The Movie Database</strong>
           </Typography>
 
