@@ -13,15 +13,16 @@ const info = [
     image:
       "https://avatars0.githubusercontent.com/u/51804994?s=400&u=089acb84462ed58da2ea3c4e4fab55b89a572134&v=4",
     desc:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis odit numquam adipisci, enim sequi asperiores soluta doloremque. Ad reiciendis ab recusandae dolorum atque?",
+      "",
     github: "https://github.com/EzequielCaste",
+    linkedin: "https://www.linkedin.com/in/ezequiel-castellanos-a9ab6b1b8/"
   },
   {
     username: "Frunobulax",
     image:
       "https://avatars1.githubusercontent.com/u/59532138?s=460&u=723204ebc6a06d574e281cadb8ba0331b9cef4c8&v=4",
     desc:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis odit numquam adipisci, enim sequi asperiores soluta doloremque. Ad reiciendis ab recusandae dolorum atque?",
+      "",
     github: "https://github.com/jmceche",
   },
   {
@@ -29,7 +30,7 @@ const info = [
     image:
       "https://avatars3.githubusercontent.com/u/58148530?s=400&u=dee5ae2a662869786d58b280287bf9d1cbd41437&v=4",
     desc:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis odit numquam adipisci, enim sequi asperiores soluta doloremque. Ad reiciendis ab recusandae dolorum atque?",
+      "",
     github: "https://github.com/miloalfonzo",
   },
 ];
@@ -55,6 +56,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "3rem",
   },
   headerTitle: {
+    width: '50%',
     color: "#FFFFFF",
     textShadow: "2px 2px 2px black",
     //color: "#000",
@@ -75,6 +77,9 @@ const useStyles = makeStyles((theme) => ({
     margin: "2rem auto",
     padding: ".8rem",
     backgroundColor: "#fafafa",
+    '&:hover': {
+      transform: 'scale(1.01)'
+    }
   },
 }));
 
@@ -101,7 +106,7 @@ export const About = () => {
         >
           Este proyecto forma parte de <strong>CMYK++ </strong> una iniciativa
           de <strong>FrontendCafe</strong> para facilitar el desarrollo de
-          proyectos colaborativos
+          proyectos colaborativos. Trabajamos con React, React Router y fue la primera vez que usamos Material UI en un proyecto. Ha sido una experiencia nueva y aprendimos a trabajar en equipo y coordinar el esfuerzo.
         </Typography>
       </div>
 
@@ -149,7 +154,7 @@ export const About = () => {
                     </Grid>
                     <Grid item>
                       <a
-                        href='https://linkedin.com'
+                        href={user.linkedin || ""}
                         target='_blank'
                         rel='noreferrer'
                       >
