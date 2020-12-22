@@ -20,7 +20,7 @@ const CardGrid = ({ data }) => {
       {data && (
         <Grid container spacing={3} className={classes.root}>
           {data.map((movie) => (
-            <Grid item key={movie.id} lg={12} md={3} sm={3} xs={6}>
+            <Grid item key={movie.id} lg={3} md={3} sm={3} xs={6}>
               <MovieCard movie={movie} />
             </Grid>
           ))}

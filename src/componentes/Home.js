@@ -47,18 +47,19 @@ const Home = () => {
           indicatorColor='secondary'
           textColor='secondary'
         >
-          <Tab label='Popular' />
           <Tab label='In Theaters' />
+          <Tab label='Popular' />
         </Tabs>
       </Container>
+
       <TabPanel value={value} index={0}>
         <ResultTab
-          url={`https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&sort_by=popularity`}
+          url={`https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&sort_by=popularity`}
         />
       </TabPanel>
       <TabPanel value={value} index={1}>
         <ResultTab
-          url={`https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&sort_by=popularity`}
+          url={`https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&sort_by=popularity`}
         />
       </TabPanel>
     </Container>

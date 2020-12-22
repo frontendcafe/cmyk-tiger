@@ -57,7 +57,7 @@ export const MovieDetail = () => {
     return (
       <Container className={classes.container}>
         <Grid container justify='center' spacing={2}>
-          <Grid container item justify='center' lg={12} md={3} sm={3} xs={6}>
+          <Grid container item justify='center' lg={3} md={3} sm={3} xs={6}>
 
             <Grid item>
               <a
