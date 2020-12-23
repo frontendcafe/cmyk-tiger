@@ -37,8 +37,15 @@ const useStyles = makeStyles((theme) => ({
   title: {
     fontSize: "1.2rem",
   },
-  container: {
-    minHeight: "100vh",
+  bgContainer: {
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    backgroundBlendMode: "screen",
+    marginTop: "-3rem",
+    height: "80vh",
+    display: "flex",
+    alignItems: "center",
+
   },
 }));
 
@@ -55,7 +62,13 @@ export const MovieDetail = () => {
     return <Spinner />;
   } else if (peli && peli.length !== 0) {
     return (
-      <Container className={classes.container}>
+      <Container
+        className={classes.bgContainer}
+        maxWidth={false}
+        style={{
+          backgroundImage: `linear-gradient(rgba(230,230,230,0.8),rgba(230,230,230,0.9)) ,url('//image.tmdb.org/t/p/w1920_and_h800_multi_faces/${peli.backdrop_path}')`,
+        }}
+      >
         <Grid container justify='center' spacing={2}>
           <Grid container item justify='center' lg={3} md={3} sm={3} xs={6}>
             <Grid item>
