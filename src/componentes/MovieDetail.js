@@ -54,6 +54,7 @@ export const MovieDetail = () => {
   if (loading) {
     return <Spinner />;
   } else if (peli && peli.length !== 0) {
+
     return (
       <Container className={classes.container}>
         <Grid container justify='center' spacing={2}>
