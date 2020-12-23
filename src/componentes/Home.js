@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Container from "@material-ui/core/Container";
-import CardList from "./CardList";
 import { makeStyles } from "@material-ui/core/styles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
@@ -30,8 +29,6 @@ function TabPanel(props) {
 }
 
 const Home = () => {
-  // no soy muy fan de poner la URl en las props
-  // habrá una forma de implementarlos de otra manera?
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 

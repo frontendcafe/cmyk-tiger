@@ -4,6 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Rating from "@material-ui/lab/Rating";
 import Chip from "@material-ui/core/Chip";
+import no_image from "../assets/no_image.png";
 
 import { Button, makeStyles } from "@material-ui/core";
 
@@ -36,9 +37,6 @@ const useStyles = makeStyles((theme) => ({
   title: {
     fontSize: "1.2rem",
   },
-  container: {
-    //height: "100vh",
-  },
   bgContainer: {
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
@@ -47,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
     height: "80vh",
     display: "flex",
     alignItems: "center",
+
   },
 }));
 
@@ -80,7 +79,11 @@ export const MovieDetail = () => {
               >
                 <img
                   className={classes.poster}
-                  src={`https://image.tmdb.org/t/p/w500/${peli.poster_path}`}
+                  src={
+                    peli.poster_path
+                      ? `https://image.tmdb.org/t/p/w500/${peli.poster_path}`
+                      : no_image
+                  }
                   alt=''
                 />
               </a>
