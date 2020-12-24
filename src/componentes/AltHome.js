@@ -1,5 +1,5 @@
 import { Chip, Container, Divider, makeStyles } from '@material-ui/core'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import genres from '../pelis/genres';
 import CardGrid from './CardGrid';
 import { useRandom } from '../hooks/useRandom';
@@ -8,9 +8,12 @@ const useStyles = makeStyles((theme) => ({
   cardContainer: {
     display: "flex",
     flexDirection: 'column',
-    justifyContent: "center",
-    marginTop: 50,
+    justifyContent: "flex-start",
+    marginTop: 5,
     height: '70vh'
+  },
+  chipContainer: {
+    marginBottom: 10
   },
   chip: {
     marginLeft: '5px'
@@ -23,6 +26,19 @@ export const AltHome = () => {
   const [genreId, setKeywordId] = useState(Array.from(genres));
   const [data, setData] = useState('');
 
+  async function getMovie(id) {
+
+    const url = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&vote_count.gte=10&with_genres=${id}`
+
+    const resp = await fetch(url);
+    const data = await resp.json();
+
+    setData(data)
+  }
+
+  useEffect(() => {
+    getMovie(genreId[rng].id)
+  }, [])
 
   const classes = useStyles();
 
@@ -40,8 +56,7 @@ export const AltHome = () => {
 
   return (
     <Container className={classes.cardContainer}>
-      <div>
-        <h3>Movie Recommendations</h3>
+      <div className={classes.chipContainer}>
         {
           Array.from(genres).map(key => (
             <Chip
@@ -55,14 +70,10 @@ export const AltHome = () => {
           ))
         }
       </div>
-      <Divider />
 
       {
         data && <CardGrid data={(data.results.sort(function () { return 0.5 - Math.random() }).splice(0, 16))} />
       }
-
-
-
 
     </Container>
   )

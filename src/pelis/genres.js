@@ -82,7 +82,7 @@ const genres = [
 const getRandomGenres = (arr) => {
   const arrayOfRng = [];
 
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 15; i++) {
     arrayOfRng.push(genres[Math.floor(Math.random() * arr.length)])
   }
 

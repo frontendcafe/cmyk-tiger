@@ -17,8 +17,8 @@ export const AppRouter = () => {
         <Navbar />
         <Switch>
           <Route exact path='/'>
-            {/* <Home /> */}
-            <AltHome />
+            <Home />
+            {/* <AltHome /> */}
           </Route>
           <Route path='/movie/:id'>
             <MovieDetail />
