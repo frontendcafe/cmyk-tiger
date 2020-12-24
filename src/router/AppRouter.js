@@ -7,6 +7,7 @@ import { SearchResults } from "../componentes/SearchResults";
 import Home from "../componentes/Home";
 import { Footer } from "../componentes/Footer";
 import ScrollToTop from "../componentes/ScrollToTop";
+import { AltHome } from "../componentes/AltHome";
 
 export const AppRouter = () => {
   return (
@@ -17,6 +18,7 @@ export const AppRouter = () => {
         <Switch>
           <Route exact path='/'>
             <Home />
+            {/* <AltHome /> */}
           </Route>
           <Route path='/movie/:id'>
             <MovieDetail />

@@ -5,6 +5,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Box from "@material-ui/core/Box";
 import ResultTab from "./ResultTab";
+import { AltHome } from "./AltHome";
 
 const useStyles = makeStyles({
   root: {
@@ -44,17 +45,24 @@ const Home = () => {
           indicatorColor='secondary'
           textColor='secondary'
         >
+          <Tab label='Discovery' />
           <Tab label='In Theaters' />
           <Tab label='Popular' />
         </Tabs>
       </Container>
 
       <TabPanel value={value} index={0}>
+        {/* <ResultTab
+          url={`https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&sort_by=popularity`}
+        /> */}
+        <AltHome />
+      </TabPanel>
+      <TabPanel value={value} index={1}>
         <ResultTab
           url={`https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&sort_by=popularity`}
         />
       </TabPanel>
-      <TabPanel value={value} index={1}>
+      <TabPanel value={value} index={2}>
         <ResultTab
           url={`https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&sort_by=popularity`}
         />
