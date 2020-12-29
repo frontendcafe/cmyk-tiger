@@ -1,4 +1,4 @@
-import { Chip, Container, Divider, makeStyles } from '@material-ui/core'
+import { Chip, Container, makeStyles } from '@material-ui/core'
 import React, { useEffect, useState } from 'react'
 import genres from '../pelis/genres';
 import CardGrid from './CardGrid';
@@ -10,13 +10,14 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     justifyContent: "flex-start",
     marginTop: 5,
-    height: '70vh'
+    padding: '0'
   },
   chipContainer: {
     marginBottom: 10
   },
   chip: {
-    marginLeft: '5px'
+    marginLeft: '5px',
+    marginBottom: '10px'
   }
 }));
 
@@ -72,7 +73,7 @@ export const AltHome = () => {
       </div>
 
       {
-        data && <CardGrid data={(data.results.sort(function () { return 0.5 - Math.random() }).splice(0, 16))} />
+        data && <CardGrid data={(data.results.sort(function () { return 0.5 - Math.random() }).splice(0, 10))} />
       }
 
     </Container>

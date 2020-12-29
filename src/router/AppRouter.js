@@ -11,27 +11,25 @@ import { AltHome } from "../componentes/AltHome";
 
 export const AppRouter = () => {
   return (
-    <div>
-      <BrowserRouter>
-        <ScrollToTop />
-        <Navbar />
-        <Switch>
-          <Route exact path='/'>
-            <Home />
-            {/* <AltHome /> */}
-          </Route>
-          <Route path='/movie/:id'>
-            <MovieDetail />
-          </Route>
-          <Route path='/about'>
-            <About />
-          </Route>
-          <Route path='/search/:query'>
-            <SearchResults />
-          </Route>
-        </Switch>
-        <Footer />
-      </BrowserRouter>
-    </div>
+    <BrowserRouter>
+      <ScrollToTop />
+      <Navbar />
+      <Switch>
+        <Route exact path='/'>
+          <Home />
+          {/* <AltHome /> */}
+        </Route>
+        <Route path='/movie/:id'>
+          <MovieDetail />
+        </Route>
+        <Route path='/about'>
+          <About />
+        </Route>
+        <Route path='/search/:query'>
+          <SearchResults />
+        </Route>
+      </Switch>
+      <Footer />
+    </BrowserRouter>
   );
 };
