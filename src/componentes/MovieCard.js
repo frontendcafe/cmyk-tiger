@@ -21,12 +21,12 @@ const MovieCard = ({ movie }) => {
       transition: 'all 0.3s ease',
       "&:hover": {
         transform: 'translateY(-5px)',
-        boxShadow: "-4px 4px 10px 1px #6C2E01",
+        boxShadow: "-4px 4px 10px 1px #bc49af",
       },
     },
     title: {
       fontSize: '14px',
-      color: "#000000",
+      color: "white",
       textAlign: "center",
       justifySelf: "center",
     },

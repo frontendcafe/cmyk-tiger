@@ -13,16 +13,16 @@ footer {
     font-size: 1rem;
   }
   & a {
-    color: darken($color: white, $amount: 90);
+    color: darken($color: white, $amount: 20);
   }
   & a:hover {
     color: darken($color: white, $amount: 50);
   }
   
-  padding: 2rem;
+  padding: 1rem;
   font-size: 1rem;
   color: darken($color: white, $amount: 30);
-  background: #ffbc8c;
+  background: black;
   margin-top: 2rem;
   display: grid;
   place-items: center;
