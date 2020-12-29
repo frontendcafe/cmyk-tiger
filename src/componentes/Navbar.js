@@ -10,6 +10,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     marginBottom: "5px",
+    background: 'linear-gradient(139deg, #fb8817, #ff4b01, #c12127, #6C2E01)',
   },
 
   menuButton: {
@@ -73,7 +74,7 @@ export default function SearchAppBar({ handleSubmit }) {
 
   return (
     <div className={classes.root}>
-      <AppBar position='static' color='secondary'>
+      <AppBar position='static' className={classes.root}>
         <Toolbar>
           <Typography className={classes.title} variant='h6' noWrap>
             <Link to='/'>
