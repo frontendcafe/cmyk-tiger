@@ -1,57 +1,122 @@
-import React from "react";
+import React, { useState } from "react";
 import { Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import no_image from "../assets/no_image.png";
 
-const MovieCard = ({ movie }) => {
-  const useStyles = makeStyles((theme) => ({
-    root: {
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "space-between",
-      alignItems: "center",
-    },
-    img: {
-      width: '100%',
-      // maxWidth: "220px",
-      // maxHeight: "330px",
-      borderRadius: "10px",
-    },
-    title: {
-      fontSize: '16px',
-      color: "#000000",
-      textAlign: "center",
-      justifySelf: "center",
-    },
-    resumen: {
-      fontSize: "0.8rem",
-    },
-    noLink: {
-      textDecoration: "none",
-    },
-  }));
+import TrailerModal from "./TrailerModal";
+import Fab from "@material-ui/core/Fab";
+import Modal from "@material-ui/core/Modal";
+import PlayIcon from "@material-ui/icons/PlayArrow";
 
+function getModalStyle() {
+  const top = 50;
+  const left = 50;
+
+  return {
+    top: `${top}%`,
+    left: `${left}%`,
+    transform: `translate(-${top}%, -${left}%)`,
+  };
+}
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  img: {
+    width: "100%",
+    // maxWidth: "220px",
+    // maxHeight: "330px",
+    borderRadius: "10px",
+  },
+  title: {
+    fontSize: "16px",
+    color: "#000000",
+    textAlign: "center",
+    justifySelf: "center",
+  },
+  resumen: {
+    fontSize: "0.8rem",
+  },
+  noLink: {
+    textDecoration: "none",
+  },
+  relative: {
+    position: "relative",
+  },
+  floating: {
+    position: "absolute",
+    top: "80%",
+    right: "2%",
+  },
+  paper: {
+    position: "absolute",
+    /*  width: 560,
+    height: 315, */
+    //backgroundColor: theme.palette.background.paper,
+    //boxShadow: theme.shadows[5],
+    //padding: theme.spacing(2, 4, 3),
+  },
+}));
+
+const MovieCard = ({ movie }) => {
   const classes = useStyles();
+  const [modalStyle] = useState(getModalStyle);
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
-    <Link
-      to={`/movie/${movie.id}`}
-      className={`${classes.root} ${classes.noLink}`}
-    >
-      <img
-        className={classes.img}
-        src={
-          movie.poster_path
-            ? `https://image.tmdb.org/t/p/w220_and_h330_face/${movie.poster_path}`
-            : no_image
-        }
-        alt={movie.title}
-      />
-      <Typography className={classes.title} variant='h5'>
-        {movie.title}
-      </Typography>
-    </Link>
+    <>
+      <div className={classes.relative}>
+        <Link
+          to={`/movie/${movie.id}`}
+          className={`${classes.root} ${classes.noLink}`}
+        >
+          <img
+            className={classes.img}
+            src={
+              movie.poster_path
+                ? `https://image.tmdb.org/t/p/w220_and_h330_face/${movie.poster_path}`
+                : no_image
+            }
+            alt={movie.title}
+          />
+          <Typography className={classes.title} variant='h5'>
+            {movie.title}
+          </Typography>
+        </Link>
+        <Fab
+          color='primary'
+          aria-label='play'
+          className={classes.floating}
+          onClick={() => {
+            handleOpen();
+          }}
+        >
+          <PlayIcon />
+        </Fab>
+      </div>
+      <Modal
+        open={open}
+        onClose={() => {
+          handleClose();
+        }}
+      >
+        <div style={modalStyle} className={classes.paper}>
+          <TrailerModal movie={movie} />
+        </div>
+      </Modal>
+    </>
   );
 };
 
