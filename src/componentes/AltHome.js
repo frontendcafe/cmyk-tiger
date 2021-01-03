@@ -18,6 +18,11 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 10,
   },
   chip: {
+    transition: 'all 0.3s ease',
+    background: 'linear-gradient(139deg, #fb8817, #ff4b01, #c12127, #6C2E01)',
+    '&:hover': {
+      filter: 'drop-shadow(1px 2px 3px #6C2E01);'
+    },
     marginLeft: '5px',
     marginBottom: '10px'
   }
@@ -59,21 +64,21 @@ export const AltHome = () => {
     <Container className={classes.cardContainer}>
       <TransitionsModal />
       <div className={classes.chipContainer}>
-        {Array.from(genres).map((key) => (
-          <Chip
-            key={key.name}
-            onClick={() => handleClick(key.id)}
-            className={classes.chip}
-            size='medium'
-            variant='default'
-            color='primary'
-            label={`${key.name}`}
-          />
-        ))}
+        {
+          Array.from(genres).map(key => (
+            <Chip
+              key={key.name}
+              onClick={() => handleClick(key.id)}
+              className={classes.chip}
+              size='medium'
+              color='primary'
+              label={`${key.name}`} />
+          ))
+        }
       </div>
 
       {
-        data && <CardGrid data={(data.results.sort(function () { return 0.5 - Math.random() }).splice(0, 10))} />
+        data && <CardGrid data={(data.results.sort(function () { return 0.5 - Math.random() }).splice(0, 8))} />
       }
 
     </Container>

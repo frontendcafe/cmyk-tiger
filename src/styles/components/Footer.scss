@@ -10,19 +10,19 @@ footer {
     display: flex;
     flex-direction: column;
     padding: 1rem;
-    font-size: .6rem;
+    font-size: 1rem;
   }
   & a {
-    color: darken($color: white, $amount: 50);
-  }
-  & a:hover {
     color: darken($color: white, $amount: 20);
   }
+  & a:hover {
+    color: darken($color: white, $amount: 50);
+  }
   
-  padding: 2rem;
-  font-size: .8rem;
+  padding: 1rem;
+  font-size: 1rem;
   color: darken($color: white, $amount: 30);
-  background-color: lighten($color: black, $amount: 20);
+  background: black;
   margin-top: 2rem;
   display: grid;
   place-items: center;

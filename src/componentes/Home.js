@@ -12,6 +12,9 @@ const useStyles = makeStyles({
     flexGrow: 1,
     padding: '0'
   },
+  tabText: {
+    color: 'white'
+  }
 });
 
 function TabPanel(props) {
@@ -43,7 +46,7 @@ const Home = () => {
         value={value}
         onChange={handleChange}
         indicatorColor='secondary'
-        textColor='secondary'
+        className={classes.tabText}
       >
         <Tab label='Discovery' />
         <Tab label='In Theaters' />
