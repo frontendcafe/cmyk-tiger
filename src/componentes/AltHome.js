@@ -1,4 +1,4 @@
-import { Chip, Container, Divider, makeStyles } from "@material-ui/core";
+import { Chip, Container, makeStyles } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import genres from "../pelis/genres";
 import CardGrid from "./CardGrid";
@@ -6,6 +6,7 @@ import { useRandom } from "../hooks/useRandom";
 
 const useStyles = makeStyles((theme) => ({
   cardContainer: {
+    padding: 0,
     display: "flex",
     flexDirection: "column",
     justifyContent: "flex-start",
