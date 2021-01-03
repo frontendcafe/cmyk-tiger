@@ -10,6 +10,7 @@ import { AltHome } from "./AltHome";
 const useStyles = makeStyles({
   root: {
     flexGrow: 1,
+    padding: '0'
   },
 });
 
@@ -37,19 +38,18 @@ const Home = () => {
     setValue(newValue);
   };
   return (
-    <Container>
-      <Container className={classes.root}>
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          indicatorColor='secondary'
-          textColor='secondary'
-        >
-          <Tab label='Discovery' />
-          <Tab label='In Theaters' />
-          <Tab label='Popular' />
-        </Tabs>
-      </Container>
+    <Container className={classes.root}>
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        indicatorColor='secondary'
+        textColor='secondary'
+      >
+        <Tab label='Discovery' />
+        <Tab label='In Theaters' />
+        <Tab label='Popular' />
+      </Tabs>
+
 
       <TabPanel value={value} index={0}>
         {/* <ResultTab
