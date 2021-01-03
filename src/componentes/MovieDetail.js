@@ -45,7 +45,11 @@ const useStyles = makeStyles((theme) => ({
     height: "80vh",
     display: "flex",
     alignItems: "center",
-
+  },
+  providers: {
+    margin: "0 .3rem",
+    borderRadius: "10px",
+    maxWidth: "70px",
   },
 }));
 
@@ -53,7 +57,7 @@ export const MovieDetail = () => {
   const { id } = useParams();
 
   const { data: peli, loading } = useFetch(
-    `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}`
+    `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&append_to_response=watch/providers`
   );
 
   const classes = useStyles();
@@ -61,7 +65,6 @@ export const MovieDetail = () => {
   if (loading) {
     return <Spinner />;
   } else if (peli && peli.length !== 0) {
-
     return (
       <Container
         className={classes.bgContainer}
@@ -153,6 +156,20 @@ export const MovieDetail = () => {
               </Grid>
               <Grid item>
                 <Typography varian='subtitle1'>{peli.overview}</Typography>
+              </Grid>
+              <Grid item>
+                <Typography variant='h6'>
+                  Streaming sites availabe (Argentina)
+                </Typography>
+              </Grid>
+              <Grid item>
+                {peli["watch/providers"].results.AR.flatrate.map((site) => (
+                  <img
+                    src={`http://image.tmdb.org/t/p/original/${site.logo_path}`}
+                    alt={site.provider_name}
+                    className={classes.providers}
+                  />
+                ))}
               </Grid>
               <Link className={classes.margin} to='/'>
                 <Button variant='contained' size='medium' color='primary'>
