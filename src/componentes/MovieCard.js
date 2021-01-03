@@ -8,6 +8,7 @@ import TrailerModal from "./TrailerModal";
 import Fab from "@material-ui/core/Fab";
 import Modal from "@material-ui/core/Modal";
 import PlayIcon from "@material-ui/icons/PlayArrow";
+import Button from "@material-ui/core/Button";
 
 function getModalStyle() {
   const top = 50;
@@ -50,16 +51,32 @@ const useStyles = makeStyles((theme) => ({
   },
   floating: {
     position: "absolute",
-    top: "80%",
+    top: "2%",
     right: "2%",
+    background: "rgba(0,0,0,0.5)",
+    color: "white",
+    minHeight: 0,
+    minWidth: 0,
+    padding: 0,
+    fontSize: "clamp(.4rem, 1vw, 2rem)",
+
+    "&:hover": {
+      background: "rgba(255,255,255,0.5)",
+      color: "black",
+    },
+    "&:hover p": {
+      transition: "all .3s linear",
+      width: "100%",
+    },
   },
   paper: {
     position: "absolute",
-    /*  width: 560,
-    height: 315, */
-    //backgroundColor: theme.palette.background.paper,
-    //boxShadow: theme.shadows[5],
-    //padding: theme.spacing(2, 4, 3),
+  },
+  btnTitle: {
+    margin: 0,
+    width: 0,
+    overflow: "hidden",
+    whiteSpace: "nowrap",
   },
 }));
 
@@ -95,16 +112,15 @@ const MovieCard = ({ movie }) => {
             {movie.title}
           </Typography>
         </Link>
-        <Fab
-          color='primary'
-          aria-label='play'
+        <Button
           className={classes.floating}
           onClick={() => {
             handleOpen();
           }}
         >
           <PlayIcon />
-        </Fab>
+          <p className={classes.btnTitle}>Watch Trailer</p>
+        </Button>
       </div>
       <Modal
         open={open}
