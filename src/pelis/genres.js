@@ -1,5 +1,3 @@
-import { useRandom } from "../hooks/useRandom";
-
 const genres = [
   {
     "id": 28,

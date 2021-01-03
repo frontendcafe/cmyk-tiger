@@ -13,7 +13,7 @@ const ResultTab = ({ url }) => {
       setResults((result) => [...result, data]);
     };
     fetchData();
-  }, [resPage]);
+  }, [resPage, url]);
   return (
     <>
       {results &&

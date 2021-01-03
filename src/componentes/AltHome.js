@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import genres from '../pelis/genres';
 import CardGrid from './CardGrid';
 import { useRandom } from '../hooks/useRandom';
+import TransitionsModal from './TransitionsModal';
 
 const useStyles = makeStyles((theme) => ({
   cardContainer: {
@@ -56,6 +57,7 @@ export const AltHome = () => {
 
   return (
     <Container className={classes.cardContainer}>
+      <TransitionsModal />
       <div className={classes.chipContainer}>
         {Array.from(genres).map((key) => (
           <Chip
