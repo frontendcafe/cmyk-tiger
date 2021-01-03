@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Typography } from "@material-ui/core";
+import React, { useEffect, useState } from "react";
+import { Fade, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import no_image from "../assets/no_image.png";
@@ -30,13 +30,19 @@ const useStyles = makeStyles((theme) => ({
   },
   img: {
     width: "100%",
-    // maxWidth: "220px",
+    maxWidth: "220px",
     // maxHeight: "330px",
     borderRadius: "10px",
+    marginBottom: 10,
+    transition: 'all 0.3s ease',
+    "&:hover": {
+      transform: 'translateY(-5px)',
+      boxShadow: "-4px 4px 10px 1px #bc49af",
+    },
   },
   title: {
-    fontSize: "16px",
-    color: "#000000",
+    fontSize: "14px",
+    color: "white",
     textAlign: "center",
     justifySelf: "center",
   },
@@ -84,6 +90,11 @@ const MovieCard = ({ movie }) => {
   const classes = useStyles();
   const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
+  const [checked, setChecked] = useState(false);
+
+  useEffect(() => {
+    setChecked(true)
+  }, [])
 
   const handleOpen = () => {
     setOpen(true);
@@ -94,34 +105,36 @@ const MovieCard = ({ movie }) => {
 
   return (
     <>
-      <div className={classes.relative}>
-        <Link
-          to={`/movie/${movie.id}`}
-          className={`${classes.root} ${classes.noLink}`}
-        >
-          <img
-            className={classes.img}
-            src={
-              movie.poster_path
-                ? `https://image.tmdb.org/t/p/w220_and_h330_face/${movie.poster_path}`
-                : no_image
-            }
-            alt={movie.title}
-          />
-          <Typography className={classes.title} variant='h5'>
-            {movie.title}
-          </Typography>
-        </Link>
-        <Button
-          className={classes.floating}
-          onClick={() => {
-            handleOpen();
-          }}
-        >
-          <PlayIcon />
-          <p className={classes.btnTitle}>Watch Trailer</p>
-        </Button>
-      </div>
+      <Fade timeout={1000} in={checked}>
+        <div className={classes.relative}>
+          <Link
+            to={`/movie/${movie.id}`}
+            className={`${classes.root} ${classes.noLink}`}
+          >
+            <img
+              className={classes.img}
+              src={
+                movie.poster_path
+                  ? `https://image.tmdb.org/t/p/w220_and_h330_face/${movie.poster_path}`
+                  : no_image
+              }
+              alt={movie.title}
+            />
+            <Typography className={classes.title} variant='h5'>
+              {movie.title}
+            </Typography>
+          </Link>
+          <Button
+            className={classes.floating}
+            onClick={() => {
+              handleOpen();
+            }}
+          >
+            <PlayIcon />
+            <p className={classes.btnTitle}>Watch Trailer</p>
+          </Button>
+        </div>
+      </Fade>
       <Modal
         open={open}
         onClose={() => {
