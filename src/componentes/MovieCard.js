@@ -51,18 +51,18 @@ const useStyles = makeStyles((theme) => ({
   },
   floating: {
     position: "absolute",
-    top: "2%",
-    right: "2%",
-    background: "rgba(0,0,0,0.5)",
-    color: "white",
+    top: "50%",
+    left: "50%",
+    background: "rgba(0,0,0,0.6)",
+    color: "orange",
     minHeight: 0,
     minWidth: 0,
-    padding: 0,
-    fontSize: "clamp(.4rem, 1vw, 2rem)",
+    padding: '1rem',
+    // fontSize: "clamp(.4rem, 1vw, 2rem)",
+    transform: 'translate(-50%, -50%)',
 
     "&:hover": {
-      background: "rgba(255,255,255,0.5)",
-      color: "black",
+      background: "rgba(0,0,0,0.8)",
     },
     "&:hover p": {
       transition: "all .3s linear",
