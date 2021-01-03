@@ -7,6 +7,7 @@ import MovieCard from "./MovieCard";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    paddingLeft: 0,
   },
 }));
 
