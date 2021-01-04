@@ -29,11 +29,11 @@ const useStyles = makeStyles((theme) => ({
 
 export const AltHome = () => {
   const { rng } = useRandom(genres.size);
-
-  const [genreId, setKeywordId] = useState(Array.from(genres)[rng].id);
+  const genreId = Array.from(genres)[rng].id;
   const [data, setData] = useState("");
 
   async function getMovie(id) {
+    console.log("fetching");
     const url = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&vote_count.gte=10&with_genres=${id}`;
 
     const resp = await fetch(url);
@@ -44,13 +44,12 @@ export const AltHome = () => {
 
   useEffect(() => {
     getMovie(genreId);
-  }, [genreId]);
+  }, []);
 
   const classes = useStyles();
 
   function handleClick(id) {
-    setData("");
-    setKeywordId(id);
+    getMovie(id);
   }
 
   return (
