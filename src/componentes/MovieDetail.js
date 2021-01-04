@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     backgroundBlendMode: "screen",
-    marginTop: "-3rem",
+    marginTop: "-5px",
     height: "80vh",
     display: "flex",
     alignItems: "center",
@@ -163,14 +163,13 @@ export const MovieDetail = () => {
                 </Typography>
               </Grid>
               <Grid item>
-                {peli["watch/providers"].results.AR &&
-                peli["watch/providers"].results.AR.flatrate ? (
+                {peli["watch/providers"].results.AR?.flatrate ? (
                   peli["watch/providers"].results.AR.flatrate.map((site) => (
                     <img
                       src={`http://image.tmdb.org/t/p/original/${site.logo_path}`}
                       alt={site.provider_name}
                       className={classes.providers}
-                      key={site.id}
+                      key={site.provider_id}
                     />
                   ))
                 ) : (
