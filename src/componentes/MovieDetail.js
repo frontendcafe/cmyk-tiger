@@ -47,11 +47,11 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     [theme.breakpoints.down('sm')]: {
-      color: 'red',
+      // color: 'red',
       fontSize: '1.5rem',
     },
     [theme.breakpoints.up('md')]: {
-      color: 'green',
+      // color: 'green',
     },
     [theme.breakpoints.up('lg')]: {
       fontSize: '2rem',
