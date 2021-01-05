@@ -13,14 +13,25 @@ import { useFetch } from "../hooks/useFetch";
 import { Spinner } from "./Spinner";
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    marginTop: 5,
+  },
   tagline: {
     padding: "0",
-    marginTop: "-3rem",
+    //marginTop: "-3rem",
     fontStyle: "italic",
   },
   margin: {
-    marginTop: "2rem",
-    margin: "auto",
+    marginTop: 15,
+    [theme.breakpoints.down('sm')]: {
+      marginTop: 5,
+    },
+  },
+  chip: {
+    marginRight: 5,
+    [theme.breakpoints.down('sm')]: {
+      marginBottom: 5,
+    },
   },
   poster: {
     transition: "all ease 0.4s",
@@ -35,17 +46,40 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   title: {
-    fontSize: "1.2rem",
+    [theme.breakpoints.down('sm')]: {
+      color: 'red',
+      fontSize: '1.5rem',
+    },
+    [theme.breakpoints.up('md')]: {
+      color: 'green',
+    },
+    [theme.breakpoints.up('lg')]: {
+      fontSize: '2rem',
+    },
+  },
+  poster_container: {
+    display: 'grid',
+    placeItems: 'center',
+    marginTop: 0,
+    marginBottom: 15,
+    [theme.breakpoints.down('sm')]: {
+      marginTop: -50,
+    },
   },
   bgContainer: {
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     backgroundBlendMode: "screen",
-    marginTop: "-3rem",
+    //marginTop: "-3rem",
     height: "80vh",
+    [theme.breakpoints.down('xs')]: {
+      height: '200vh',
+    },
     display: "flex",
     alignItems: "center",
-
+  },
+  vote_average: {
+    fontSize: '.8rem',
   },
 }));
 
@@ -70,99 +104,97 @@ export const MovieDetail = () => {
           backgroundImage: `linear-gradient(rgba(230,230,230,0.8),rgba(230,230,230,0.9)) ,url('//image.tmdb.org/t/p/w1920_and_h800_multi_faces/${peli.backdrop_path}')`,
         }}
       >
-        <Grid container justify='center' spacing={2}>
-          <Grid container item justify='center' lg={3} md={3} sm={3} xs={6}>
+        <Grid justify='center' container alignItems='center' spacing={5}>
+          <Grid item xs={10} sm={4} lg={6} className={classes.poster_container}>
+            <a
+              href={`https://imdb.com/title/${peli.imdb_id}`}
+              target='_blank'
+              rel='noreferrer'
+            >
+              <img
+                className={classes.poster}
+                src={
+                  peli.poster_path
+                    ? `https://image.tmdb.org/t/p/w500/${peli.poster_path}`
+                    : no_image
+                }
+                alt=''
+              />
+            </a>
+          </Grid>
+
+          <Grid item xs={10} sm={8} lg={5} className={classes.margin}>
+            <Typography className={classes.title}>
+              {peli.original_title} ({peli.release_date.slice(0, 4)})
+            </Typography>
+
             <Grid item>
-              <a
-                href={`https://imdb.com/title/${peli.imdb_id}`}
-                target='_blank'
-                rel='noreferrer'
-              >
-                <img
-                  className={classes.poster}
-                  src={
-                    peli.poster_path
-                      ? `https://image.tmdb.org/t/p/w500/${peli.poster_path}`
-                      : no_image
-                  }
-                  alt=''
+              {peli.genres.map((genre) => (
+
+                <Chip
+                  key={genre.name}
+                  className={classes.chip}
+                  size='medium'
+                  variant='default'
+                  color='primary'
+                  label={`${genre.name}`}
                 />
-              </a>
+
+              ))}
             </Grid>
-          </Grid>
-          <Grid item container direction='column' spacing={8} xs={12} md={8}>
-            <Grid item container spacing={3}>
+
+
+            <Grid item>
+              <Typography variant='caption'>{peli.runtime} min</Typography>
+            </Grid>
+
+            <Grid
+              item
+              container
+              direcion='row'
+              alignItems='center'
+              spacing={1}
+            >
               <Grid item>
-                <Typography className={classes.title}>
-                  {peli.original_title} ({peli.release_date.slice(0, 4)})
+                <Rating
+                  name='half-rating-read'
+                  defaultValue={peli.vote_average}
+                  precision={0.1}
+                  max={10}
+                  size='small'
+                  readOnly
+                />
+              </Grid>
+              <Grid>
+                <Typography variant="caption">
+                  {peli.vote_average}
                 </Typography>
               </Grid>
-              <Grid
-                item
-                container
-                direction='row'
-                spacing={2}
-                alignItems='center'
-              >
-                {peli.genres.map((genre) => (
-                  <Grid key={genre.name} item>
-                    <Chip
-                      size='medium'
-                      variant='default'
-                      color='primary'
-                      label={`${genre.name}`}
-                    />
-                  </Grid>
-                ))}
-                <Grid item>
-                  <Typography variant='body1'>{peli.runtime} min</Typography>
-                </Grid>
-              </Grid>
-              <Grid
-                item
-                container
-                direcion='row'
-                alignItems='center'
-                spacing={2}
-              >
-                <Grid item>
-                  <Rating
-                    name='half-rating-read'
-                    defaultValue={peli.vote_average}
-                    precision={0.1}
-                    max={10}
-                    size='large'
-                    readOnly
-                  />
-                </Grid>
-                <Grid>
-                  <Typography className={classes.title}>
-                    {peli.vote_average}
-                  </Typography>
-                </Grid>
-              </Grid>
             </Grid>
-            <Grid item direction='column' container spacing={2}>
-              <Grid item>
-                <Typography className={classes.tagline} variant='subtitle1'>
-                  {peli.tagline}
-                </Typography>
-              </Grid>
-              <Grid item>
-                <Typography variant='h6'>Overview</Typography>
-              </Grid>
-              <Grid item>
-                <Typography varian='subtitle1'>{peli.overview}</Typography>
-              </Grid>
-              <Link className={classes.margin} to='/'>
-                <Button variant='contained' size='medium' color='primary'>
-                  Back
+            <Grid item>
+              <Typography className={classes.tagline} variant='subtitle1'>
+                {peli.tagline}
+              </Typography>
+            </Grid>
+            <Grid item>
+              <Typography variant='h6'>Overview</Typography>
+            </Grid>
+            <Grid item>
+              <Typography varian='subtitle1'>{peli.overview}</Typography>
+            </Grid>
+
+            <Link to='/'>
+              <Button className={classes.margin} variant='contained' size='medium' color='primary'>
+                Back
                 </Button>
-              </Link>
-            </Grid>
+            </Link>
+
+
           </Grid>
+
+
         </Grid>
-      </Container>
+      </Container >
     );
   }
 };

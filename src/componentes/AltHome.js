@@ -12,7 +12,6 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     justifyContent: "flex-start",
     marginTop: 5,
-    padding: '0'
   },
   chipContainer: {
     marginBottom: 10,
