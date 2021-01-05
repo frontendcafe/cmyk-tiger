@@ -33,7 +33,7 @@ export const AltHome = () => {
   const [data, setData] = useState("");
 
   async function getMovie(id) {
-    
+
     const url = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&vote_count.gte=10&with_genres=${id}`;
 
     const resp = await fetch(url);
@@ -44,7 +44,7 @@ export const AltHome = () => {
 
   useEffect(() => {
     getMovie(genreId);
-  }, [genreId]);
+  }, []);
 
   const classes = useStyles();
 
