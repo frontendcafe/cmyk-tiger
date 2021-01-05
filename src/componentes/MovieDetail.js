@@ -73,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
     //marginTop: "-3rem",
     height: "80vh",
     [theme.breakpoints.down('xs')]: {
-      height: '200vh',
+      height: '180vh',
     },
     display: "flex",
     alignItems: "center",
@@ -105,7 +105,7 @@ export const MovieDetail = () => {
         }}
       >
         <Grid justify='center' container alignItems='center' spacing={5}>
-          <Grid item xs={10} sm={4} lg={6} className={classes.poster_container}>
+          <Grid item xs={10} sm={4} lg={5} className={classes.poster_container}>
             <a
               href={`https://imdb.com/title/${peli.imdb_id}`}
               target='_blank'
