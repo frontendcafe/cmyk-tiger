@@ -15,8 +15,8 @@ footer {
   & a {
     color: darken($color: white, $amount: 20);
   }
-  & a:hover {
-    color: darken($color: white, $amount: 50);
+  & a:hover {    
+    color: #bc49af;
   }
   
   padding: 1rem;

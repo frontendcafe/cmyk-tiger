@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import no_image from "../assets/no_image.png";
 
 import TrailerModal from "./TrailerModal";
-import Fab from "@material-ui/core/Fab";
 import Modal from "@material-ui/core/Modal";
 import PlayIcon from "@material-ui/icons/PlayArrow";
 import Button from "@material-ui/core/Button";
@@ -31,7 +30,6 @@ const useStyles = makeStyles((theme) => ({
   img: {
     width: "100%",
     maxWidth: "220px",
-    // maxHeight: "330px",
     borderRadius: "10px",
     marginBottom: 10,
     transition: 'all 0.3s ease',
@@ -64,7 +62,6 @@ const useStyles = makeStyles((theme) => ({
     minHeight: 0,
     minWidth: 0,
     padding: '1rem',
-    // fontSize: "clamp(.4rem, 1vw, 2rem)",
     transform: 'translate(-50%, -50%)',
 
     "&:hover": {
