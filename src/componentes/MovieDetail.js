@@ -23,13 +23,13 @@ const useStyles = makeStyles((theme) => ({
   },
   margin: {
     marginTop: 15,
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down("sm")]: {
       marginTop: 5,
     },
   },
   chip: {
     marginRight: 5,
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down("sm")]: {
       marginBottom: 5,
     },
   },
@@ -46,23 +46,23 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   title: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down("sm")]: {
       // color: 'red',
-      fontSize: '1.5rem',
+      fontSize: "1.5rem",
     },
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up("md")]: {
       // color: 'green',
     },
-    [theme.breakpoints.up('lg')]: {
-      fontSize: '2rem',
+    [theme.breakpoints.up("lg")]: {
+      fontSize: "2rem",
     },
   },
   poster_container: {
-    display: 'grid',
-    placeItems: 'center',
+    display: "grid",
+    placeItems: "center",
     marginTop: 0,
     marginBottom: 15,
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down("sm")]: {
       marginTop: -50,
     },
   },
@@ -72,14 +72,19 @@ const useStyles = makeStyles((theme) => ({
     backgroundBlendMode: "screen",
     //marginTop: "-3rem",
     height: "80vh",
-    [theme.breakpoints.down('xs')]: {
-      height: '180vh',
+    [theme.breakpoints.down("xs")]: {
+      height: "180vh",
     },
     display: "flex",
     alignItems: "center",
   },
   vote_average: {
-    fontSize: '.8rem',
+    fontSize: ".8rem",
+  },
+  providers: {
+    margin: "0 .3rem",
+    borderRadius: "10px",
+    maxWidth: "70px",
   },
 }));
 
@@ -87,7 +92,7 @@ export const MovieDetail = () => {
   const { id } = useParams();
 
   const { data: peli, loading } = useFetch(
-    `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}`
+    `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&append_to_response=watch/providers`
   );
 
   const classes = useStyles();
@@ -95,7 +100,6 @@ export const MovieDetail = () => {
   if (loading) {
     return <Spinner />;
   } else if (peli && peli.length !== 0) {
-
     return (
       <Container
         className={classes.bgContainer}
@@ -130,7 +134,6 @@ export const MovieDetail = () => {
 
             <Grid item>
               {peli.genres.map((genre) => (
-
                 <Chip
                   key={genre.name}
                   className={classes.chip}
@@ -139,22 +142,14 @@ export const MovieDetail = () => {
                   color='primary'
                   label={`${genre.name}`}
                 />
-
               ))}
             </Grid>
-
 
             <Grid item>
               <Typography variant='caption'>{peli.runtime} min</Typography>
             </Grid>
 
-            <Grid
-              item
-              container
-              direcion='row'
-              alignItems='center'
-              spacing={1}
-            >
+            <Grid item container direcion='row' alignItems='center' spacing={1}>
               <Grid item>
                 <Rating
                   name='half-rating-read'
@@ -166,9 +161,7 @@ export const MovieDetail = () => {
                 />
               </Grid>
               <Grid>
-                <Typography variant="caption">
-                  {peli.vote_average}
-                </Typography>
+                <Typography variant='caption'>{peli.vote_average}</Typography>
               </Grid>
             </Grid>
             <Grid item>
@@ -177,24 +170,47 @@ export const MovieDetail = () => {
               </Typography>
             </Grid>
             <Grid item>
-              <Typography variant='h6'>Overview</Typography>
+              <Typography variant='h6' style={{ marginTop: "1rem" }}>
+                Overview
+              </Typography>
             </Grid>
             <Grid item>
               <Typography varian='subtitle1'>{peli.overview}</Typography>
             </Grid>
-
+            <Grid item style={{ marginTop: "1rem" }}>
+              <Typography variant='h6'>
+                Streaming sites availabe (Argentina)
+              </Typography>
+            </Grid>
+            <Grid item>
+              {peli["watch/providers"].results.AR?.flatrate ? (
+                peli["watch/providers"].results.AR.flatrate.map((site) => (
+                  <img
+                    src={`http://image.tmdb.org/t/p/original/${site.logo_path}`}
+                    alt={site.provider_name}
+                    className={classes.providers}
+                    key={site.id}
+                  />
+                ))
+              ) : (
+                <Typography variant='subtitle1'>
+                  No streaming services available
+                </Typography>
+              )}
+            </Grid>
             <Link to='/'>
-              <Button className={classes.margin} variant='contained' size='medium' color='primary'>
+              <Button
+                className={classes.margin}
+                variant='contained'
+                size='medium'
+                color='primary'
+              >
                 Back
-                </Button>
+              </Button>
             </Link>
-
-
           </Grid>
-
-
         </Grid>
-      </Container >
+      </Container>
     );
   }
 };
