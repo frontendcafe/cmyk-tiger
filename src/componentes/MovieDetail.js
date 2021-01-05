@@ -81,18 +81,13 @@ const useStyles = makeStyles((theme) => ({
   vote_average: {
     fontSize: '.8rem',
   },
-  providers: {
-    margin: "0 .3rem",
-    borderRadius: "10px",
-    maxWidth: "70px",
-  },
 }));
 
 export const MovieDetail = () => {
   const { id } = useParams();
 
   const { data: peli, loading } = useFetch(
-    `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&append_to_response=watch/providers`
+    `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}`
   );
 
   const classes = useStyles();
@@ -100,6 +95,7 @@ export const MovieDetail = () => {
   if (loading) {
     return <Spinner />;
   } else if (peli && peli.length !== 0) {
+
     return (
       <Container
         className={classes.bgContainer}
@@ -174,33 +170,6 @@ export const MovieDetail = () => {
                   {peli.vote_average}
                 </Typography>
               </Grid>
-              <Grid item>
-                <Typography variant='h6'>
-                  Streaming sites availabe (Argentina)
-                </Typography>
-              </Grid>
-              <Grid item>
-                {peli["watch/providers"].results.AR &&
-                peli["watch/providers"].results.AR.flatrate ? (
-                  peli["watch/providers"].results.AR.flatrate.map((site) => (
-                    <img
-                      src={`http://image.tmdb.org/t/p/original/${site.logo_path}`}
-                      alt={site.provider_name}
-                      className={classes.providers}
-                      key={site.id}
-                    />
-                  ))
-                ) : (
-                  <Typography variant='subtitle1'>
-                    No streaming services available
-                  </Typography>
-                )}
-              </Grid>
-              <Link className={classes.margin} to='/'>
-                <Button variant='contained' size='medium' color='primary'>
-                  Back
-                </Button>
-              </Link>
             </Grid>
             <Grid item>
               <Typography className={classes.tagline} variant='subtitle1'>
