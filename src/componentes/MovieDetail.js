@@ -163,27 +163,6 @@ export const MovieDetail = () => {
               <Grid>
                 <Typography variant='caption'>{peli.vote_average}</Typography>
               </Grid>
-              <Grid item>
-                {peli["watch/providers"].results.AR?.flatrate ? (
-                  peli["watch/providers"].results.AR.flatrate.map((site) => (
-                    <img
-                      src={`http://image.tmdb.org/t/p/original/${site.logo_path}`}
-                      alt={site.provider_name}
-                      className={classes.providers}
-                      key={site.provider_id}
-                    />
-                  ))
-                ) : (
-                  <Typography variant='subtitle1'>
-                    No streaming services available
-                  </Typography>
-                )}
-              </Grid>
-              <Link className={classes.margin} to='/'>
-                <Button variant='contained' size='medium' color='primary'>
-                  Back
-                </Button>
-              </Link>
             </Grid>
             <Grid item>
               <Typography className={classes.tagline} variant='subtitle1'>
@@ -210,7 +189,7 @@ export const MovieDetail = () => {
                     src={`http://image.tmdb.org/t/p/original/${site.logo_path}`}
                     alt={site.provider_name}
                     className={classes.providers}
-                    key={site.id}
+                    key={site.provider_id}
                   />
                 ))
               ) : (
