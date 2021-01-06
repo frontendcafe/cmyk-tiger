@@ -30,7 +30,7 @@ export default function TransitionsModal() {
   }, [])
   const handleOpen = () => {
     let opened = JSON.parse(window.localStorage.getItem('modalOpen')) || false
-    console.log(opened);
+
     if (!opened) {
       setOpen(true);
       window.localStorage.setItem('modalOpen', true)
@@ -43,9 +43,6 @@ export default function TransitionsModal() {
 
   return (
     <div>
-      {/* <button type="button" onClick={handleOpen}>
-        react-transition-group
-      </button> */}
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"

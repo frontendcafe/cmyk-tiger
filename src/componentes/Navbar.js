@@ -9,7 +9,6 @@ import { Link } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    marginBottom: "5px",
     background: 'linear-gradient(139deg, #fb8817, #ff4b01, #c12127, #6C2E01)',
   },
 
