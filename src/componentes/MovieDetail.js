@@ -11,6 +11,7 @@ import { Button, makeStyles } from "@material-ui/core";
 import { Link, useParams } from "react-router-dom";
 import { useFetch } from "../hooks/useFetch";
 import { Spinner } from "./Spinner";
+import CardGrid from "./CardGrid";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   margin: {
     marginTop: 15,
     [theme.breakpoints.down('sm')]: {
-      marginTop: 5,
+      margin: '5px auto',
     },
   },
   chip: {
@@ -43,6 +44,16 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       filter: "grayscale(0%)",
       boxShadow: "-4px 4px 10px 1px #ae6e17",
+    },
+    [theme.breakpoints.down("sm")]: {
+      // color: 'red',
+      maxWidth: "150px",
+    },
+    [theme.breakpoints.up("md")]: {
+      // color: 'green',
+    },
+    [theme.breakpoints.up("lg")]: {
+      maxWidth: "200px",
     },
   },
   title: {
@@ -73,7 +84,7 @@ const useStyles = makeStyles((theme) => ({
     //marginTop: "-3rem",
     height: "80vh",
     [theme.breakpoints.down('xs')]: {
-      height: '180vh',
+      height: '260vh',
     },
     display: "flex",
     alignItems: "center",
@@ -81,21 +92,29 @@ const useStyles = makeStyles((theme) => ({
   vote_average: {
     fontSize: '.8rem',
   },
+  backBtn: {
+    display: 'grid',
+    marginTop: 25,
+  },
 }));
 
 export const MovieDetail = () => {
   const { id } = useParams();
 
   const { data: peli, loading } = useFetch(
-    `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}`
+    `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&append_to_response=watch/providers`
   );
 
   const classes = useStyles();
 
-  if (loading) {
-    return <Spinner />;
-  } else if (peli && peli.length !== 0) {
+  const { data: recommend, loadingRec } = useFetch(`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&language=en-US&page=1`)
 
+
+  if (loading || loadingRec) {
+
+    return <Spinner />;
+  } else if (peli && peli.length !== 0 && recommend) {
+    const sortedRecommendations = recommend.results.sort((a, b) => b.vote_average - a.vote_average);
     return (
       <Container
         className={classes.bgContainer}
@@ -104,7 +123,7 @@ export const MovieDetail = () => {
           backgroundImage: `linear-gradient(rgba(230,230,230,0.8),rgba(230,230,230,0.9)) ,url('//image.tmdb.org/t/p/w1920_and_h800_multi_faces/${peli.backdrop_path}')`,
         }}
       >
-        <Grid justify='center' container alignItems='center' spacing={5}>
+        <Grid justify='center' container alignItems='center' spacing={1}>
           <Grid item xs={10} sm={4} lg={5} className={classes.poster_container}>
             <a
               href={`https://imdb.com/title/${peli.imdb_id}`}
@@ -182,8 +201,35 @@ export const MovieDetail = () => {
             <Grid item>
               <Typography varian='subtitle1'>{peli.overview}</Typography>
             </Grid>
+            <Grid item style={{ marginTop: "1rem" }}>
+              <Typography variant='h6'>
+                Streaming sites availabe (Argentina)
+              </Typography>
+            </Grid>
+            <Grid item>
+              {peli["watch/providers"].results.AR?.flatrate ? (
+                peli["watch/providers"].results.AR.flatrate.map((site) => (
+                  <img
+                    src={`http://image.tmdb.org/t/p/original/${site.logo_path}`}
+                    alt={site.provider_name}
+                    className={classes.providers}
+                    key={site.provider_id}
+                  />
+                ))
+              ) : (
+                  <Typography variant='subtitle1'>
+                    No streaming services available
+                  </Typography>
+                )}
+            </Grid>
+            <Grid item>
+              <Typography>Similar Movies:</Typography>
+            </Grid>
+            {
+              sortedRecommendations && <CardGrid data={sortedRecommendations.splice(0, 4)} />
+            }
 
-            <Link to='/'>
+            <Link className={classes.backBtn} to='/'>
               <Button className={classes.margin} variant='contained' size='medium' color='primary'>
                 Back
                 </Button>
@@ -196,5 +242,7 @@ export const MovieDetail = () => {
         </Grid>
       </Container >
     );
+  } else {
+    return <Spinner />
   }
 };
