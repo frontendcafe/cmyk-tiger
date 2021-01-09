@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   },
   chip: {
     marginRight: 5,
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down("sm")]: {
       marginBottom: 5,
     },
   },
@@ -57,23 +57,23 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   title: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down("sm")]: {
       // color: 'red',
-      fontSize: '1.5rem',
+      fontSize: "1.5rem",
     },
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up("md")]: {
       // color: 'green',
     },
-    [theme.breakpoints.up('lg')]: {
-      fontSize: '2rem',
+    [theme.breakpoints.up("lg")]: {
+      fontSize: "2rem",
     },
   },
   poster_container: {
-    display: 'grid',
-    placeItems: 'center',
+    display: "grid",
+    placeItems: "center",
     marginTop: 0,
     marginBottom: 15,
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down("sm")]: {
       marginTop: -50,
     },
   },
@@ -81,7 +81,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     backgroundBlendMode: "screen",
-    //marginTop: "-3rem",
+    marginTop: "-5px",
     height: "80vh",
     [theme.breakpoints.down('xs')]: {
       height: '260vh',
@@ -90,7 +90,12 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   vote_average: {
-    fontSize: '.8rem',
+    fontSize: ".8rem",
+  },
+  providers: {
+    margin: "0 .3rem",
+    borderRadius: "10px",
+    maxWidth: "70px",
   },
   backBtn: {
     display: 'grid',
@@ -149,7 +154,6 @@ export const MovieDetail = () => {
 
             <Grid item>
               {peli.genres.map((genre) => (
-
                 <Chip
                   key={genre.name}
                   className={classes.chip}
@@ -158,22 +162,14 @@ export const MovieDetail = () => {
                   color='primary'
                   label={`${genre.name}`}
                 />
-
               ))}
             </Grid>
-
 
             <Grid item>
               <Typography variant='caption'>{peli.runtime} min</Typography>
             </Grid>
 
-            <Grid
-              item
-              container
-              direcion='row'
-              alignItems='center'
-              spacing={1}
-            >
+            <Grid item container direcion='row' alignItems='center' spacing={1}>
               <Grid item>
                 <Rating
                   name='half-rating-read'
@@ -185,9 +181,7 @@ export const MovieDetail = () => {
                 />
               </Grid>
               <Grid>
-                <Typography variant="caption">
-                  {peli.vote_average}
-                </Typography>
+                <Typography variant='caption'>{peli.vote_average}</Typography>
               </Grid>
             </Grid>
             <Grid item>
@@ -196,7 +190,9 @@ export const MovieDetail = () => {
               </Typography>
             </Grid>
             <Grid item>
-              <Typography variant='h6'>Overview</Typography>
+              <Typography variant='h6' style={{ marginTop: "1rem" }}>
+                Overview
+              </Typography>
             </Grid>
             <Grid item>
               <Typography varian='subtitle1'>{peli.overview}</Typography>
@@ -232,15 +228,11 @@ export const MovieDetail = () => {
             <Link className={classes.backBtn} to='/'>
               <Button className={classes.margin} variant='contained' size='medium' color='primary'>
                 Back
-                </Button>
+              </Button>
             </Link>
-
-
           </Grid>
-
-
         </Grid>
-      </Container >
+      </Container>
     );
   } else {
     return <Spinner />
