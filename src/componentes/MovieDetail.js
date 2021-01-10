@@ -11,6 +11,7 @@ import { Button, makeStyles } from "@material-ui/core";
 import { Link, useParams } from "react-router-dom";
 import { useFetch } from "../hooks/useFetch";
 import { Spinner } from "./Spinner";
+import CardGrid from "./CardGrid";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,8 +24,8 @@ const useStyles = makeStyles((theme) => ({
   },
   margin: {
     marginTop: 15,
-    [theme.breakpoints.down("sm")]: {
-      marginTop: 5,
+    [theme.breakpoints.down('sm')]: {
+      margin: '5px auto',
     },
   },
   chip: {
@@ -43,6 +44,16 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       filter: "grayscale(0%)",
       boxShadow: "-4px 4px 10px 1px #ae6e17",
+    },
+    [theme.breakpoints.down("sm")]: {
+      // color: 'red',
+      maxWidth: "250px",
+    },
+    [theme.breakpoints.up("md")]: {
+      // color: 'green',
+    },
+    [theme.breakpoints.up("lg")]: {
+      maxWidth: "450px",
     },
   },
   title: {
@@ -63,18 +74,25 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 0,
     marginBottom: 15,
     [theme.breakpoints.down("sm")]: {
-      marginTop: -50,
+      marginTop: 15,
     },
   },
   bgContainer: {
+
+    [theme.breakpoints.down('lg')]: {
+      height: '100vh',
+    },
+    [theme.breakpoints.between('xs', 'sm')]: {
+      height: '245vh',
+      alignItems: 'end',
+    },
+    [theme.breakpoints.down('md')]: {
+      height: '110vh',
+    },
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     backgroundBlendMode: "screen",
     marginTop: "-5px",
-    height: "80vh",
-    [theme.breakpoints.down("xs")]: {
-      height: "180vh",
-    },
     display: "flex",
     alignItems: "center",
   },
@@ -85,6 +103,10 @@ const useStyles = makeStyles((theme) => ({
     margin: "0 .3rem",
     borderRadius: "10px",
     maxWidth: "70px",
+  },
+  backBtn: {
+    display: 'grid',
+    marginTop: 25,
   },
 }));
 
@@ -97,9 +119,14 @@ export const MovieDetail = () => {
 
   const classes = useStyles();
 
-  if (loading) {
+  const { data: recommend, loadingRec } = useFetch(`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&language=en-US&page=1`)
+
+
+  if (loading || loadingRec) {
+
     return <Spinner />;
-  } else if (peli && peli.length !== 0) {
+  } else if (peli && peli.length !== 0 && recommend) {
+    const sortedRecommendations = recommend.results.sort((a, b) => b.vote_average - a.vote_average);
     return (
       <Container
         className={classes.bgContainer}
@@ -108,7 +135,7 @@ export const MovieDetail = () => {
           backgroundImage: `linear-gradient(rgba(230,230,230,0.8),rgba(230,230,230,0.9)) ,url('//image.tmdb.org/t/p/w1920_and_h800_multi_faces/${peli.backdrop_path}')`,
         }}
       >
-        <Grid justify='center' container alignItems='center' spacing={5}>
+        <Grid justify='space-around' container alignItems='center' spacing={1}>
           <Grid item xs={10} sm={4} lg={5} className={classes.poster_container}>
             <a
               href={`https://imdb.com/title/${peli.imdb_id}`}
@@ -127,7 +154,7 @@ export const MovieDetail = () => {
             </a>
           </Grid>
 
-          <Grid item xs={10} sm={8} lg={5} className={classes.margin}>
+          <Grid item xs={10} sm={6} lg={5} className={classes.margin}>
             <Typography className={classes.title}>
               {peli.original_title} ({peli.release_date.slice(0, 4)})
             </Typography>
@@ -193,18 +220,20 @@ export const MovieDetail = () => {
                   />
                 ))
               ) : (
-                <Typography variant='subtitle1'>
-                  No streaming services available
-                </Typography>
-              )}
+                  <Typography variant='subtitle1'>
+                    No streaming services available
+                  </Typography>
+                )}
             </Grid>
-            <Link to='/'>
-              <Button
-                className={classes.margin}
-                variant='contained'
-                size='medium'
-                color='primary'
-              >
+            <Grid item>
+              <Typography>Similar Movies:</Typography>
+            </Grid>
+            {
+              sortedRecommendations && <CardGrid data={sortedRecommendations.splice(0, 4)} />
+            }
+
+            <Link className={classes.backBtn} to='/'>
+              <Button className={classes.margin} variant='contained' size='medium' color='primary'>
                 Back
               </Button>
             </Link>
@@ -212,5 +241,7 @@ export const MovieDetail = () => {
         </Grid>
       </Container>
     );
+  } else {
+    return <Spinner />
   }
 };
