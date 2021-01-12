@@ -122,6 +122,7 @@ const MovieCard = ({ movie }) => {
             </Typography>
           </Link>
           <Button
+            disabled={false}
             className={classes.floating}
             onClick={() => {
               handleOpen();
