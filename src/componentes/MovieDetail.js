@@ -51,6 +51,7 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.up("md")]: {
       // color: 'green',
+      maxWidth: "250px",
     },
     [theme.breakpoints.up("lg")]: {
       maxWidth: "450px",
@@ -82,12 +83,12 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('lg')]: {
       height: '100vh',
     },
-    [theme.breakpoints.between('xs', 'sm')]: {
+    [theme.breakpoints.between('sm', 'xs')]: {
       height: '245vh',
       alignItems: 'end',
     },
-    [theme.breakpoints.down('md')]: {
-      height: '110vh',
+    [theme.breakpoints.down('xs')]: {
+      height: '220vh',
     },
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
