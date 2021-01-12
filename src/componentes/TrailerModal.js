@@ -27,7 +27,7 @@ const TrailerModal = ({ movie }) => {
     return <h1 className={classes.noTrailer}>No Trailer</h1>  
   } else {    
     return (
-          <h1>
+          <>
             {peli && (
               <div>
                 <iframe
@@ -42,7 +42,7 @@ const TrailerModal = ({ movie }) => {
               </div>
             )
             }
-          </h1>
+          </>
         );
       }
   
