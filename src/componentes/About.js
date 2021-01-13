@@ -84,8 +84,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: "cover",
     background: "#fb8817",
     backgroundImage:
-      "url('https://i.pinimg.com/originals/29/af/1f/29af1fd6d7755840399006c75f74e501.jpg')",
-    backgroundImage:
       "linear-gradient(139deg, #fb8817fa, #ff4b01da, #c12127ba, #6C2E019a), url('https://i.pinimg.com/originals/29/af/1f/29af1fd6d7755840399006c75f74e501.jpg')",
     marginBottom: "3rem",
     marginTop: "-5px",
