@@ -12,6 +12,10 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 50,
     height: '70vh'
   },
+  results: {
+    padding: 15,
+    color: 'white'
+  }
 }));
 
 export const SearchResults = () => {
@@ -27,7 +31,7 @@ export const SearchResults = () => {
   } else if (data && data.results.length !== 0) {
     return (
       <Container>
-        <Typography variant="h4" align="center" paragraph>
+        <Typography variant="h4" className={classes.results} align="center" paragraph>
           Search Results for: {query}
         </Typography>
 
@@ -38,7 +42,7 @@ export const SearchResults = () => {
   } else {
     return (
       <Container className={classes.cardContainer}>
-        <h3>No results, try again.</h3>
+        <h4 className={classes.results}>No results, try again.</h4>
       </Container>
     )
   }

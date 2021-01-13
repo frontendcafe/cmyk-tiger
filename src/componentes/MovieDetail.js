@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
       maxWidth: "250px",
     },
     [theme.breakpoints.up("lg")]: {
-      maxWidth: "450px",
+      maxWidth: "350px",
     },
   },
   title: {
@@ -89,6 +89,9 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.down('xs')]: {
       height: '220vh',
+    },
+    [theme.breakpoints.up('lg')]: {
+      height: '120vh',
     },
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
@@ -227,7 +230,7 @@ export const MovieDetail = () => {
                 )}
             </Grid>
             <Grid item>
-              <Typography>Similar Movies:</Typography>
+              <Typography variant="h6">Similar Movies:</Typography>
             </Grid>
             {
               sortedRecommendations && <CardGrid data={sortedRecommendations.splice(0, 4)} />
